@@ -19,12 +19,12 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="C++ asio网络编程 基本的asio创建tcp连接流程终端节点： 终端节点就是用来通信的端对端的节点，可以通过ip地址和端口构造，其的节点可以连接这个终端节点做通信 123456789101112&#x2F;&#x2F; 服务端创建终端节点unsigned short port_num &#x3D; 3333;asio::ip::address ip_address &#x3D; asio::ip::address_v6::any(">
+    <meta name="description" content="《总之，好记性不如烂笔头！把你遗忘的都记下来吧！》 C++ asio网络编程 基本的asio创建tcp连接流程终端节点： 终端节点就是用来通信的端对端的节点，可以通过ip地址和端口构造，其的节点可以连接这个终端节点做通信 123456789101112&#x2F;&#x2F; 服务端创建终端节点unsigned short port_num &#x3D; 3333;asio::ip::address ip_address &#x3D;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="haoks">
+<meta property="og:title" content="Boost.Asio">
 <meta property="og:url" content="http://example.com/2024/07/31/C++asio/index.html">
 <meta property="og:site_name" content="haoks">
-<meta property="og:description" content="C++ asio网络编程 基本的asio创建tcp连接流程终端节点： 终端节点就是用来通信的端对端的节点，可以通过ip地址和端口构造，其的节点可以连接这个终端节点做通信 123456789101112&#x2F;&#x2F; 服务端创建终端节点unsigned short port_num &#x3D; 3333;asio::ip::address ip_address &#x3D; asio::ip::address_v6::any(">
+<meta property="og:description" content="《总之，好记性不如烂笔头！把你遗忘的都记下来吧！》 C++ asio网络编程 基本的asio创建tcp连接流程终端节点： 终端节点就是用来通信的端对端的节点，可以通过ip地址和端口构造，其的节点可以连接这个终端节点做通信 123456789101112&#x2F;&#x2F; 服务端创建终端节点unsigned short port_num &#x3D; 3333;asio::ip::address ip_address &#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240630150204589.png">
 <meta property="og:image" content="https://cdn.llfc.club/1676257797218.jpg">
@@ -35,15 +35,15 @@
 <meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240725152857694.png">
 <meta property="og:image" content="https://cdn.llfc.club/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230604151126.png">
 <meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240704163156448.png">
-<meta property="article:published_time" content="2024-07-31T13:07:01.657Z">
-<meta property="article:modified_time" content="2024-07-25T14:53:53.664Z">
+<meta property="article:published_time" content="2024-07-31T13:03:27.000Z">
+<meta property="article:modified_time" content="2024-07-31T13:10:54.458Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240630150204589.png">
   
   
   
-  <title>haoks</title>
+  <title>Boost.Asio - haoks</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,7 +222,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle"></span>
+            <span id="subtitle">Boost.Asio</span>
           
         </div>
 
@@ -233,7 +233,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-31 21:07" pubdate>
+        <time datetime="2024-07-31 21:03" pubdate>
           2024年7月31日 晚上
         </time>
       </span>
@@ -302,12 +302,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">Boost.Asio</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="C-asio网络编程"><a href="#C-asio网络编程" class="headerlink" title="C++ asio网络编程"></a>C++ asio网络编程</h1><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240630150204589.png" srcset="/img/loading.gif" lazyload alt="image-20240630150204589"></p>
+                <p><strong>《总之，好记性不如烂笔头！把你遗忘的都记下来吧！》</strong></p>
+<h1 id="C-asio网络编程"><a href="#C-asio网络编程" class="headerlink" title="C++ asio网络编程"></a>C++ asio网络编程</h1><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240630150204589.png" srcset="/img/loading.gif" lazyload alt="image-20240630150204589"></p>
 <h3 id="基本的asio创建tcp连接流程"><a href="#基本的asio创建tcp连接流程" class="headerlink" title="基本的asio创建tcp连接流程"></a>基本的asio创建tcp连接流程</h3><p>终端节点：</p>
 <p>终端节点就是用来通信的端对端的节点，可以通过ip地址和端口构造，其的节点可以连接这个终端节点做通信</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 服务端创建终端节点</span><br><span class="hljs-type">unsigned</span> <span class="hljs-type">short</span> port_num = <span class="hljs-number">3333</span>;<br>asio::ip::address ip_address = asio::ip::address_v6::<span class="hljs-built_in">any</span>();<br>asio::ip::<span class="hljs-function">tcp::endpoint <span class="hljs-title">ep</span><span class="hljs-params">(ip_address, port_num)</span></span>;<br><span class="hljs-comment">// 客户端创建终端节点</span><br>std::string raw_ip_address = <span class="hljs-string">&quot;127.0.0.1&quot;</span>;<br><span class="hljs-type">unsigned</span> <span class="hljs-type">short</span> port_num = <span class="hljs-number">3333</span>;<br>boost::system::error_code ec;<br>asio::ip::address ip_address =<br>    asio::ip::address::<span class="hljs-built_in">from_string</span>(raw_ip_address, ec);<br><span class="hljs-comment">// Step 3.</span><br>asio::ip::<span class="hljs-function">tcp::endpoint <span class="hljs-title">ep</span><span class="hljs-params">(ip_address, port_num)</span></span>;<br></code></pre></td></tr></table></figure>
@@ -491,7 +492,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>Boost.Asio</div>
       <div>http://example.com/2024/07/31/C++asio/</div>
     </div>
     <div class="license-meta">
@@ -536,9 +537,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/31/Effective/" title="">
+                      <a href="/2024/07/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">设计模式</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -546,8 +547,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/31/concurrency/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2024/07/31/concurrency/" title="C++并发编程">
+                        <span class="hidden-mobile">C++并发编程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
