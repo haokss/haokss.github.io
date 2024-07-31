@@ -1,0 +1,861 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="C++ asio网络编程 基本的asio创建tcp连接流程终端节点： 终端节点就是用来通信的端对端的节点，可以通过ip地址和端口构造，其的节点可以连接这个终端节点做通信 123456789101112&#x2F;&#x2F; 服务端创建终端节点unsigned short port_num &#x3D; 3333;asio::ip::address ip_address &#x3D; asio::ip::address_v6::any(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="haoks">
+<meta property="og:url" content="http://example.com/2024/07/31/C++asio/index.html">
+<meta property="og:site_name" content="haoks">
+<meta property="og:description" content="C++ asio网络编程 基本的asio创建tcp连接流程终端节点： 终端节点就是用来通信的端对端的节点，可以通过ip地址和端口构造，其的节点可以连接这个终端节点做通信 123456789101112&#x2F;&#x2F; 服务端创建终端节点unsigned short port_num &#x3D; 3333;asio::ip::address ip_address &#x3D; asio::ip::address_v6::any(">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240630150204589.png">
+<meta property="og:image" content="https://cdn.llfc.club/1676257797218.jpg">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240725143439857.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240725145610542.png">
+<meta property="og:image" content="https://cdn.llfc.club/1682251035380.jpg">
+<meta property="og:image" content="https://cdn.llfc.club/1683367901552.jpg">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240725152857694.png">
+<meta property="og:image" content="https://cdn.llfc.club/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230604151126.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240704163156448.png">
+<meta property="article:published_time" content="2024-07-31T13:07:01.657Z">
+<meta property="article:modified_time" content="2024-07-25T14:53:53.664Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240630150204589.png">
+  
+  
+  
+  <title>haoks</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"lRNjMHJuYBjEDxG7qZ3nMGPi-gzGzoHsz","app_key":"SAOxud4u65tFtKVuwrFrHaQN","server_url":"https://lrnjmhju.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>haoks</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-31 21:07" pubdate>
+          2024年7月31日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          29 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="C-asio网络编程"><a href="#C-asio网络编程" class="headerlink" title="C++ asio网络编程"></a>C++ asio网络编程</h1><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240630150204589.png" srcset="/img/loading.gif" lazyload alt="image-20240630150204589"></p>
+<h3 id="基本的asio创建tcp连接流程"><a href="#基本的asio创建tcp连接流程" class="headerlink" title="基本的asio创建tcp连接流程"></a>基本的asio创建tcp连接流程</h3><p>终端节点：</p>
+<p>终端节点就是用来通信的端对端的节点，可以通过ip地址和端口构造，其的节点可以连接这个终端节点做通信</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 服务端创建终端节点</span><br><span class="hljs-type">unsigned</span> <span class="hljs-type">short</span> port_num = <span class="hljs-number">3333</span>;<br>asio::ip::address ip_address = asio::ip::address_v6::<span class="hljs-built_in">any</span>();<br>asio::ip::<span class="hljs-function">tcp::endpoint <span class="hljs-title">ep</span><span class="hljs-params">(ip_address, port_num)</span></span>;<br><span class="hljs-comment">// 客户端创建终端节点</span><br>std::string raw_ip_address = <span class="hljs-string">&quot;127.0.0.1&quot;</span>;<br><span class="hljs-type">unsigned</span> <span class="hljs-type">short</span> port_num = <span class="hljs-number">3333</span>;<br>boost::system::error_code ec;<br>asio::ip::address ip_address =<br>    asio::ip::address::<span class="hljs-built_in">from_string</span>(raw_ip_address, ec);<br><span class="hljs-comment">// Step 3.</span><br>asio::ip::<span class="hljs-function">tcp::endpoint <span class="hljs-title">ep</span><span class="hljs-params">(ip_address, port_num)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>客户端</strong></p>
+<p>客户端创建socket的方法:</p>
+<p>1、创建上下文io_context 2、选择协议 3、生成socket 4、打开soket</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp">asio::io_context  ioc;<br><span class="hljs-comment">// Step 2. Creating an object of &#x27;tcp&#x27; class representing</span><br><span class="hljs-comment">// a TCP protocol with IPv4 as underlying protocol.</span><br>asio::ip::tcp protocol = asio::ip::tcp::<span class="hljs-built_in">v4</span>();<br><span class="hljs-comment">// Step 3. Instantiating an active TCP socket object.</span><br>asio::ip::<span class="hljs-function">tcp::socket <span class="hljs-title">sock</span><span class="hljs-params">(ioc)</span></span>;<br><span class="hljs-comment">// Used to store information about error that happens</span><br><span class="hljs-comment">// while opening the socket.</span><br>boost::system::error_code ec;<br><span class="hljs-comment">// Step 4. Opening the socket.</span><br>sock.<span class="hljs-built_in">open</span>(protocol, ec);<br></code></pre></td></tr></table></figure>
+
+<p>客户端创建socket，并通过connect连接指定的对端</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::string raw_ip_address = <span class="hljs-string">&quot;127.0.0.1&quot;</span>;<br><span class="hljs-type">unsigned</span> <span class="hljs-type">short</span> port = <span class="hljs-number">3333</span>;<br>asio::ip::<span class="hljs-function">tcp::endpoint <span class="hljs-title">ep</span><span class="hljs-params">(asio::ip::address::from_string(raw_ip_address),port)</span></span>;<br><span class="hljs-comment">// 创建socket必须的上下文</span><br>asio::io_context ioc;<br><span class="hljs-comment">// 创建socket，创建socket时指定了协议，将自动执行open</span><br>asio::ip::<span class="hljs-function">tcp::socket <span class="hljs-title">sock</span><span class="hljs-params">(ioc, ep.protocol())</span></span>;<br><span class="hljs-comment">// 连接</span><br>sock.<span class="hljs-built_in">connect</span>(ep);<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>服务端</strong></p>
+<p>服务端创建socket，还需要生成一个acceptor的socket，用来接收连接</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 老版本创建acceptor需要 open()</span><br>asio::io_context ioc;<br>asio::ip::<span class="hljs-function">tcp::acceptor <span class="hljs-title">acceptor</span><span class="hljs-params">(ioc)</span></span>;<br>asio::ip::tcp protocol = asio::ip::tcp::<span class="hljs-built_in">v4</span>();<br>boost::system::error_code ec;<br>acceptor.<span class="hljs-built_in">open</span>(protocol, ec);<br><span class="hljs-comment">// 如果创建acceptor时指定了协议，将自动执行open</span><br>asio::ip::<span class="hljs-function">tcp::acceptor <span class="hljs-title">acceptor</span><span class="hljs-params">(ios, protocol)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<p>acceptor绑定bind，并监听listen与接收连接accept</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 服务器创建端点ep</span><br><span class="hljs-type">unsigned</span> <span class="hljs-type">short</span> port = <span class="hljs-number">3333</span>;<br>asio::ip::address ip_address = asio::ip::address_v4::<span class="hljs-built_in">any</span>();<br>asio::ip::<span class="hljs-function">tcp::endpoint <span class="hljs-title">ep</span><span class="hljs-params">(ip_address, port)</span></span>;<br><span class="hljs-comment">// 创建acceptor</span><br>asio::io_context ioc;<br>asio::ip::<span class="hljs-function">tcp::acceptor <span class="hljs-title">acceptor</span><span class="hljs-params">(ioc, ep.protocol())</span></span>;<br>boost::system::error_code ec;<br><span class="hljs-comment">// bind()绑定端点</span><br>acceptor.<span class="hljs-built_in">bind</span>(ep, ec);<br><span class="hljs-comment">// 缓冲连接大小</span><br><span class="hljs-type">const</span> <span class="hljs-type">int</span> BACKLOG_SIZE = <span class="hljs-number">30</span>;<br><span class="hljs-comment">// 监听</span><br>acceptor.<span class="hljs-built_in">listen</span>(BACKLOG_SIZE);<br><span class="hljs-comment">// 接受的sock连接由新创建的sock处理</span><br>asio::ip::<span class="hljs-function">tcp::socket <span class="hljs-title">sock</span><span class="hljs-params">(ioc)</span></span>;<br>acceptor.<span class="hljs-built_in">accept</span>(sock);<br></code></pre></td></tr></table></figure>
+
+<p>创建acceptor并进行open,bind,listen一气呵成的初始化</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">asio::io_context ioc;<br><span class="hljs-comment">// 新版本创建acceptor 并直接绑定</span><br>asio::ip::<span class="hljs-function">tcp::acceptor <span class="hljs-title">a</span><span class="hljs-params">(ioc, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), <span class="hljs-number">3333</span>))</span></span>;<br>asio::ip::<span class="hljs-function">tcp::socket <span class="hljs-title">sock</span><span class="hljs-params">(ioc)</span></span>;<br>acceptor.<span class="hljs-built_in">accept</span>(sock);<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>async_accept</strong>异步的接收客户端连接</p>
+<p>接受一个提供服务的socket，并可以传递回调函数执行回调函数内的逻辑</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">m_ac.<span class="hljs-built_in">async_accept</span>(new_session-&gt;<span class="hljs-built_in">Socket</span>(),<br>	std::<span class="hljs-built_in">bind</span>(&amp;Server::handle_accept, <span class="hljs-keyword">this</span>, new_session, std::placeholders::_1));<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="接收和发送缓冲区"><a href="#接收和发送缓冲区" class="headerlink" title="接收和发送缓冲区"></a>接收和发送缓冲区</h3><p>任何网络库都有提供buffer的数据结构，所谓buffer就是接收和发送数据时缓存数据的结构。 <code>boost::asio</code>提供了<code>asio::mutable_buffer </code>和 <code>asio::const_buffer</code>这两个结构，他们是一段连续的空间，首字节存储了后续数据的长度。 <code>asio::mutable_buffer</code>用于写服务，<code>asio::const_buffer</code>用于读服务。但是这两个结构都没有被asio的api直接使用。 对于api的buffer参数，asio提出了MutableBufferSequence和ConstBufferSequence概念，他们是由多个<code>asio::mutable_buffer</code>和<code>asio::const_buffer</code>组成的。也就是说<code>boost::asio</code>为了节省空间，将一部分连续的空间组合起来，作为参数交给api使用。 我们可以理解为MutableBufferSequence的数据结构为std::vector 结构如下</p>
+<img src="https://cdn.llfc.club/1676257797218.jpg" srcset="/img/loading.gif" lazyload alt="https://cdn.llfc.club/1676257797218.jpg" style="zoom:80%;" />
+
+<h3 id="同步读写api"><a href="#同步读写api" class="headerlink" title="同步读写api"></a>同步读写api</h3><p><strong>同步写</strong></p>
+<p><code>socket::write_some</code></p>
+<p>可以每次向指定的空间写入固定的字节数，如果写缓冲区满了，就只写一部分，返回写入的字节数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::string buf = <span class="hljs-string">&quot;hello world&quot;</span>;<br>std::<span class="hljs-type">size_t</span> total_bytes_written = <span class="hljs-number">0</span>; <span class="hljs-comment">// 已经发送的字节数</span><br><span class="hljs-keyword">while</span> (total_bytes_written != buf.<span class="hljs-built_in">length</span>()) &#123;<br>    <span class="hljs-comment">// asio::buffer()指定发送的位置和长度</span><br>    total_bytes_written += sock.<span class="hljs-built_in">write_some</span>(asio::<span class="hljs-built_in">buffer</span>(buf.<span class="hljs-built_in">c_str</span>()+total_bytes_written<br>    , buf.<span class="hljs-built_in">length</span>() - total_bytes_written));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>soket::send</code></p>
+<p>一次性将buffer中的内容发送给对端，如果有部分字节因为发送缓冲区满无法发送，则阻塞等待，直到发送缓冲区可用，则继续发送完成。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::string buf = <span class="hljs-string">&quot;Hello World!&quot;</span>;<br><span class="hljs-type">int</span> send_length = sock.<span class="hljs-built_in">send</span>(asio::<span class="hljs-built_in">buffer</span>(buf.<span class="hljs-built_in">c_str</span>(), buf.<span class="hljs-built_in">length</span>()));<br></code></pre></td></tr></table></figure>
+
+<p><code>boost::asio::write</code></p>
+<p>确保发送整个缓冲区的数据。它通常用于确保数据完全传输，需要传递socket。在内部，<code>asio::write</code> 函数通过反复调用低级别的 <code>write_some</code> 函数来实现这一点，直到整个缓冲区的数据都被成功发送。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">std::string buf = <span class="hljs-string">&quot;Hello World!&quot;</span>;<br><span class="hljs-type">int</span> send_length  = asio::<span class="hljs-built_in">write</span>(sock, asio::<span class="hljs-built_in">buffer</span>(buf.<span class="hljs-built_in">c_str</span>(), buf.<span class="hljs-built_in">length</span>()));<br></code></pre></td></tr></table></figure>
+
+<p><strong>同步读</strong></p>
+<p><code>socket::read_some</code></p>
+<p>同步读和同步写类似，提供了读取指定字节数的接口<code>read_some</code>。如果缓冲区中没有数据可供读取，<code>read_some</code> 将阻塞，直到有数据可供读取。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">const</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> MESSAGE_SIZE = <span class="hljs-number">7</span>;<br><span class="hljs-type">char</span> buf[MESSAGE_SIZE];<br>std::<span class="hljs-type">size_t</span> total_bytes_read = <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">while</span> (total_bytes_read != MESSAGE_SIZE) &#123;<br>    total_bytes_read += sock.<span class="hljs-built_in">read_some</span>(<br>    asio::<span class="hljs-built_in">buffer</span>(buf + total_bytes_read,<br>    MESSAGE_SIZE - total_bytes_read));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>socket::receive</code></p>
+<p>可以一次性同步接收对方发送的数据，如果缓冲区中没有数据可供读取，<code>receive</code> 也会阻塞，直到有数据可供读取。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">const</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> BUFF_SIZE = <span class="hljs-number">7</span>;<br><span class="hljs-type">char</span> buffer_receive[BUFF_SIZE];<br><span class="hljs-type">int</span> receive_length =  sock.<span class="hljs-built_in">receive</span>(asio::<span class="hljs-built_in">buffer</span>(buffer_receive, BUFF_SIZE));<br></code></pre></td></tr></table></figure>
+
+<p><code>boost::asio::read</code></p>
+<p>一次性同步读取对方发送的数据，通过多次调用read_some实现，需要传递socket。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-type">const</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> BUFF_SIZE = <span class="hljs-number">7</span>;<br><span class="hljs-type">char</span> buffer_receive[BUFF_SIZE];<br><span class="hljs-type">int</span> receive_length = asio::<span class="hljs-built_in">read</span>(sock, asio::<span class="hljs-built_in">buffer</span>(buffer_receive, BUFF_SIZE));<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="异步读写api"><a href="#异步读写api" class="headerlink" title="异步读写api"></a>异步读写api</h3><p><code>socket::async_write_some()</code></p>
+<p><code>async_write_some</code>是异步写的函数，这个异步写函数有两个参数，第一个参数为<code>ConstBufferSequence</code>常引用类型的buffers， 第二个参数为<code>WriteToken</code>类型，而<code>WriteToken</code>在上面定义了，是一个函数对象类型，返回值为void，参数为error_code和size_t， 所以我们为了调用<code>async_write_some</code>函数也要传入一个符合<code>WriteToken</code>定义的函数，</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Session::WriteToSocketErr</span><span class="hljs-params">(<span class="hljs-type">const</span> std::string&amp; buf)</span> </span>&#123;<br>    _send_node = <span class="hljs-built_in">make_shared</span>&lt;MsgNode&gt;(buf.<span class="hljs-built_in">c_str</span>(), buf.<span class="hljs-built_in">length</span>());<br>    <span class="hljs-comment">//异步发送数据，因为异步所以不会一下发送完</span><br>    <span class="hljs-keyword">this</span>-&gt;_socket-&gt;<span class="hljs-built_in">async_write_some</span>(asio::<span class="hljs-built_in">buffer</span>(_send_node-&gt;_msg, <br>        _send_node-&gt;_total_len),<br>        std::<span class="hljs-built_in">bind</span>(&amp;Session::WriteCallBackErr,<br>            <span class="hljs-keyword">this</span>, std::placeholders::_1, std::placeholders::_2, _send_node));<br>&#125;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Session::WriteCallBackErr</span><span class="hljs-params">(<span class="hljs-type">const</span> system::error_code&amp; ec, <span class="hljs-type">const</span> std::<span class="hljs-type">size_t</span>&amp; bytes_transfered, std::shared_ptr&lt;MsgNode&gt; node)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-comment">// 当前发送消息加上已经发送的消息 判断 总消息数量</span><br>	<span class="hljs-keyword">if</span> (bytes_transfered + node-&gt;m_cur_len &lt; node-&gt;m_total_len) &#123;<br>		node-&gt;m_cur_len += bytes_transfered;<br>		<span class="hljs-comment">// 如果小于，继续发送</span><br>		<span class="hljs-keyword">this</span>-&gt;p_socket-&gt;<span class="hljs-built_in">async_write_some</span>(asio::<span class="hljs-built_in">buffer</span>(p_send_node-&gt;p_msg + node-&gt;m_cur_len, node-&gt;m_total_len - node-&gt;m_cur_len),[<span class="hljs-keyword">this</span>,node](<span class="hljs-type">const</span> system::error_code&amp;,<span class="hljs-type">const</span> std::<span class="hljs-type">size_t</span> &amp;bytes_rans)&#123;<br>            <span class="hljs-built_in">WriteCallBackErr</span>(ec, bytes_trans,node); &#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>需要注意的问题：</strong></p>
+<p>而实际开发的场景用户是不清楚底层tcp的多路复用调用情况的，用户想发送数据的时候就调用<code>WriteToSocketErr</code>,或者循环调用<code>WriteToSocketErr</code>，很可能在一次没发送完数据还未调用回调函数时再次调用<code>WriteToSocketErr</code>，因为<code>boost::asio</code>封装的时epoll和iocp等多路复用模型，当写事件就绪后就发数据，发送的数据按照<code>async_write_some</code>调用的顺序发送，所以回调函数内调用的<code>async_write_some</code>可能并没有被及时调用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//用户发送数据</span><br><span class="hljs-built_in">WriteToSocketErr</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);<br><span class="hljs-comment">//用户无感知下层调用情况又一次发送了数据</span><br><span class="hljs-built_in">WriteToSocketErr</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>那么很可能第一次只发送了Hello，后面的数据没发完，第二次发送了Hello World!之后又发送了World! 所以对端收到的数据很可能是”HelloHello World! World!</p>
+<p>解决方法：<strong>定义一个发送队列，使用队列来维护数据的发送顺序</strong></p>
+<p><code>socket::async_send()</code></p>
+<p>异步发送，一次性发送所有数据</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">this</span>-&gt;_socket-&gt;<span class="hljs-built_in">async_send</span>(asio::<span class="hljs-built_in">buffer</span>(send_data-&gt;_msg + send_data-&gt;_cur_len, send_data-&gt;_total_len - send_data-&gt;_cur_len),std::<span class="hljs-built_in">bind</span>(&amp;Session::WriteAllCallBack,<span class="hljs-keyword">this</span>, std::placeholders::_1, std::placeholders::_2));<br></code></pre></td></tr></table></figure>
+
+<p><code>boost::asio::async_write()</code></p>
+<p><code>async_read_some()</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">_socket-&gt;<span class="hljs-built_in">async_read_some</span>(asio::<span class="hljs-built_in">buffer</span>(_recv_node-&gt;_msg+_recv_node-&gt;_cur_len, _recv_node-&gt;_total_len - _recv_node-&gt;_cur_len), std::<span class="hljs-built_in">bind</span>(&amp;Session::ReadCallBack, <span class="hljs-keyword">this</span>,<br>            std::placeholders::_1, std::placeholders::_2));<br></code></pre></td></tr></table></figure>
+
+<p><code>async_receive()</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">_socket-&gt;<span class="hljs-built_in">async_receive</span>(asio::<span class="hljs-built_in">buffer</span>(_recv_node-&gt;_msg, _recv_node-&gt;_total_len), std::<span class="hljs-built_in">bind</span>(&amp;Session::ReadAllCallBack, <span class="hljs-keyword">this</span>,std::placeholders::_1, std::placeholders::_2));<br>_recv_pending = <span class="hljs-literal">true</span>;<br></code></pre></td></tr></table></figure>
+
+<p><code>boost::asio::async_read()</code></p>
+<h3 id="封装Server和Session管理类"><a href="#封装Server和Session管理类" class="headerlink" title="封装Server和Session管理类"></a>封装Server和Session管理类</h3><p>[asio&#x2F;lecture 05 echo AsyncServer&#x2F;Session.h at master · haokss&#x2F;asio (github.com)](<a target="_blank" rel="noopener" href="https://github.com/haokss/asio/blob/master/lecture">https://github.com/haokss/asio/blob/master/lecture</a> 05 echo AsyncServer&#x2F;Session.h)</p>
+<p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240725143439857.png" srcset="/img/loading.gif" lazyload alt="image-20240725143439857"></p>
+<h3 id="处理异步发送乱序问题"><a href="#处理异步发送乱序问题" class="headerlink" title="处理异步发送乱序问题"></a>处理异步发送乱序问题</h3><p>[asio&#x2F;lecture 07 sample package&#x2F;Session.cpp at master · haokss&#x2F;asio (github.com)](<a target="_blank" rel="noopener" href="https://github.com/haokss/asio/blob/master/lecture">https://github.com/haokss/asio/blob/master/lecture</a> 07 sample package&#x2F;Session.cpp)</p>
+<p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240725145610542.png" srcset="/img/loading.gif" lazyload alt="image-20240725145610542"></p>
+<h3 id="粘包问题"><a href="#粘包问题" class="headerlink" title="粘包问题"></a>粘包问题</h3><p>因为TCP底层通信是面向字节流的，TCP只保证发送数据的准确性和顺序性，字节流以字节为单位，客户端每次发送N个字节给服务端，N取决于当前客户端的发送缓冲区是否有数据，比如发送缓冲区总大小为10个字节，当前有5个字节数据(上次要发送的数据比如’loveu’)未发送完，那么此时只有5个字节空闲空间，我们调用发送接口发送hello world！其实就是只能发送Hello给服务器，那么服务器一次性读取到的数据就很可能是loveuhello。而剩余的world！只能留给下一次发送，下一次服务器接收到的就是world！ 如下图<a target="_blank" rel="noopener" href="https://cdn.llfc.club/1682251035380.jpg"><img src="https://cdn.llfc.club/1682251035380.jpg" srcset="/img/loading.gif" lazyload alt="https://cdn.llfc.club/1682251035380.jpg"></a></p>
+<p><strong>处理粘包</strong></p>
+<p>处理粘包的方式主要采用应用层定义收发包格式的方式，这个过程俗称切包处理，常用的协议被称为tlv协议(消息id+消息长度+消息内容)，如下图<a target="_blank" rel="noopener" href="https://cdn.llfc.club/1683367901552.jpg"><img src="https://cdn.llfc.club/1683367901552.jpg" srcset="/img/loading.gif" lazyload alt="https://cdn.llfc.club/1683367901552.jpg"></a></p>
+<p>处理粘包问题的简易方法：</p>
+<p><a target="_blank" rel="noopener" href="https://gitbookcpp.llfc.club/sections/cpp/boost/asio14.html">asio处理粘包的简易方式 · 恋恋风辰的编程笔记 (llfc.club)</a></p>
+<h3 id="字节序问题"><a href="#字节序问题" class="headerlink" title="字节序问题"></a>字节序问题</h3><h4 id="服务器使用网络字节序"><a href="#服务器使用网络字节序" class="headerlink" title="服务器使用网络字节序"></a>服务器使用网络字节序</h4><p>为保证字节序一致性，网络传输使用网络字节序，也就是大端模式。<br>在 boost::asio 库中，可以使用<code>boost::asio::detail::socket_ops::host_to_network_long() </code>和 <code>boost::asio::detail::socket_ops::host_to_network_short() </code>函数将主机字节序转换为网络字节序。具体方法如下：</p>
+<p>判断本机字节序</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-comment">// 判断当前系统的字节序是大端序还是小端序</span><br><span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">is_big_endian</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> num = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> (*(<span class="hljs-type">char</span>*)&amp;num == <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-comment">// 当前系统为小端序</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 当前系统为大端序</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> num = <span class="hljs-number">0x12345678</span>;<br>    <span class="hljs-type">char</span>* p = (<span class="hljs-type">char</span>*)&amp;num;<br>    cout &lt;&lt; <span class="hljs-string">&quot;原始数据：&quot;</span> &lt;&lt; hex &lt;&lt; num &lt;&lt; endl;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">is_big_endian</span>()) &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;当前系统为大端序&quot;</span> &lt;&lt; endl;<br>        cout &lt;&lt; <span class="hljs-string">&quot;字节序为：&quot;</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">sizeof</span>(num); i++) &#123;<br>            cout &lt;&lt; hex &lt;&lt; (<span class="hljs-type">int</span>)*(p + i) &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>        &#125;<br>        cout &lt;&lt; endl;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;当前系统为小端序&quot;</span> &lt;&lt; endl;<br>        cout &lt;&lt; <span class="hljs-string">&quot;字节序为：&quot;</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-built_in">sizeof</span>(num) - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>            cout &lt;&lt; hex &lt;&lt; (<span class="hljs-type">int</span>)*(p + i) &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>        &#125;<br>        cout &lt;&lt; endl;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="封装逻辑线程处理逻辑功能"><a href="#封装逻辑线程处理逻辑功能" class="headerlink" title="封装逻辑线程处理逻辑功能"></a>封装逻辑线程处理逻辑功能</h3><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240725152857694.png" srcset="/img/loading.gif" lazyload alt="image-20240725152857694" style="zoom:200%;" />
+
+
+
+<h3 id="protobuf序列化工具"><a href="#protobuf序列化工具" class="headerlink" title="protobuf序列化工具"></a>protobuf序列化工具</h3><p>Protocol Buffers（简称 Protobuf）是一种轻便高效的序列化数据结构的协议，由 Google 开发。它可以用于将结构化数据序列化到二进制格式，并广泛用于数据存储、通信协议、配置文件等领域。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 定义proto</span><br>syntax = <span class="hljs-string">&quot;proto3&quot;</span>;<br>message MsgData<br>&#123;<br>   int32  id = <span class="hljs-number">1</span>;<br>   string data = <span class="hljs-number">2</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>客户端发送protobuf序列化消息</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp">MsgData msgdata;<br>msgdata.<span class="hljs-built_in">set_id</span>(<span class="hljs-number">1001</span>);<br>msgdata.<span class="hljs-built_in">set_data</span>(<span class="hljs-string">&quot;hello world&quot;</span>);<br>std::string request;<br>msgdata.<span class="hljs-built_in">SerializeToString</span>(&amp;request);<br></code></pre></td></tr></table></figure>
+
+<p>服务端接收序列化消息</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp">MsgData msgdata;<br>std::string receive_data;<br>msgdata.<span class="hljs-built_in">ParseFromString</span>(std::<span class="hljs-built_in">string</span>(_recv_msg_node-&gt;_data, _recv_msg_node-&gt;_total_len));<br>std::cout &lt;&lt; <span class="hljs-string">&quot;recevie msg id  is &quot;</span> &lt;&lt; msgdata.<span class="hljs-built_in">id</span>() &lt;&lt; <span class="hljs-string">&quot; msg data is &quot;</span> &lt;&lt; msgdata.<span class="hljs-built_in">data</span>() &lt;&lt; endl;<br>std::string return_str = <span class="hljs-string">&quot;server has received msg, msg data is &quot;</span> + msgdata.<span class="hljs-built_in">data</span>();<br>MsgData msgreturn;<br>msgreturn.<span class="hljs-built_in">set_id</span>(msgdata.<span class="hljs-built_in">id</span>());<br>msgreturn.<span class="hljs-built_in">set_data</span>(return_str);<br>msgreturn.<span class="hljs-built_in">SerializeToString</span>(&amp;return_str);<br><span class="hljs-built_in">Send</span>(return_str);<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="json序列化"><a href="#json序列化" class="headerlink" title="json序列化"></a>json序列化</h3><p>使用jsoncpp进行序列化，jsoncpp 是一个 C++ JSON 库，它提供了将 JSON 数据解析为 C++ 对象、将 C++ 对象序列化为 JSON 数据的功能。它支持所有主流操作系统</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;json/json.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;json/value.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;json/reader.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    Json::Value root;<br>    root[<span class="hljs-string">&quot;id&quot;</span>] = <span class="hljs-number">1001</span>;<br>    root[<span class="hljs-string">&quot;data&quot;</span>] = <span class="hljs-string">&quot;hello world&quot;</span>;<br>    std::string request = root.<span class="hljs-built_in">toStyledString</span>();<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;request is &quot;</span> &lt;&lt; request &lt;&lt; std::endl;<br><br>    Json::Value root2;<br>    Json::Reader reader;<br>    reader.<span class="hljs-built_in">parse</span>(request, root2);<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;msg id is &quot;</span> &lt;&lt; root2[<span class="hljs-string">&quot;id&quot;</span>] &lt;&lt; <span class="hljs-string">&quot; msg is &quot;</span> &lt;&lt; root2[<span class="hljs-string">&quot;data&quot;</span>] &lt;&lt; std::endl;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="服务器优雅推出"><a href="#服务器优雅推出" class="headerlink" title="服务器优雅推出"></a>服务器优雅推出</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp">boost::asio::io_context ioc;<br><span class="hljs-comment">// 设置服务器推出信号</span><br>boost::<span class="hljs-function">asio::signal_set <span class="hljs-title">signals</span><span class="hljs-params">(ioc, SIGINT, SIGTERM)</span></span>;<br>signals.<span class="hljs-built_in">async_wait</span>([&amp;ioc](<span class="hljs-keyword">auto</span>, <span class="hljs-keyword">auto</span>) &#123;<br>	ioc.<span class="hljs-built_in">stop</span>();<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>使用调用堆栈查看LogicSystem析构</p>
+<h3 id="asio协程"><a href="#asio协程" class="headerlink" title="asio协程"></a>asio协程</h3><p>协程更容易处理IO密集型的服务器，因为其协程上下文切换快</p>
+<h3 id="封装IOServicePool"><a href="#封装IOServicePool" class="headerlink" title="封装IOServicePool"></a>封装IOServicePool</h3><p><img src="https://cdn.llfc.club/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230604151126.png" srcset="/img/loading.gif" lazyload alt="https://cdn.llfc.club/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230604151126.png"></p>
+<h3 id="使用beast构建http服务器"><a href="#使用beast构建http服务器" class="headerlink" title="使用beast构建http服务器"></a>使用beast构建http服务器</h3><p>[asio&#x2F;lecture 14 HttpServer&#x2F;lecture 14 HttpServer.cpp at master · haokss&#x2F;asio (github.com)](<a target="_blank" rel="noopener" href="https://github.com/haokss/asio/blob/master/lecture">https://github.com/haokss/asio/blob/master/lecture</a> 14 HttpServer&#x2F;lecture 14 HttpServer.cpp)</p>
+<p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240704163156448.png" srcset="/img/loading.gif" lazyload alt="image-20240704163156448"></p>
+<h3 id="使用beast搭建websocket服务器"><a href="#使用beast搭建websocket服务器" class="headerlink" title="使用beast搭建websocket服务器"></a>使用beast搭建websocket服务器</h3><p>[asio&#x2F;lecture 15 Websocket at master · haokss&#x2F;asio (github.com)](<a target="_blank" rel="noopener" href="https://github.com/haokss/asio/tree/master/lecture">https://github.com/haokss/asio/tree/master/lecture</a> 15 Websocket)</p>
+<h3 id="服务器通信grpc"><a href="#服务器通信grpc" class="headerlink" title="服务器通信grpc"></a>服务器通信grpc</h3><p>通过grpc可以实现服务器之间的通信</p>
+<p>库配置：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42102546/article/details/133071765?spm=1001.2101.3001.6650.3&utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~Ctr-3-133071765-blog-135999810.235%5Ev43%5Epc_blog_bottom_relevance_base7&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~Ctr-3-133071765-blog-135999810.235%5Ev43%5Epc_blog_bottom_relevance_base7&utm_relevant_index=4">win10系统 C++环境 安装编译GRPC_windows下grpc安装教程c++-CSDN博客</a></p>
+<p>编译proto文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">protoc.exe  -I=&quot;.&quot; --grpc_out=&quot;.&quot; --plugin=protoc-gen-grpc=&quot;D:\c++_lib\grpc-1.34.0\grpc\visualpro\Debug\grpc_cpp_plugin.exe&quot; &quot;message.proto&quot;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">protoc.exe --cpp_out=. &quot;message.proto&quot;<br></code></pre></td></tr></table></figure>
+
+<p>定义proto文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp">syntax = <span class="hljs-string">&quot;proto3&quot;</span>;<br>package hello;<br>service Greeter &#123;<br>  <span class="hljs-function">rpc <span class="hljs-title">SayHello</span> <span class="hljs-params">(HelloRequest)</span> <span class="hljs-title">returns</span> <span class="hljs-params">(HelloReply)</span> </span>&#123;&#125;<br>&#125;<br>message HelloRequest &#123;<br>  string message = <span class="hljs-number">1</span>;<br>&#125;<br>message HelloReply &#123;<br>  string message = <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="Linux网络编程"><a href="#Linux网络编程" class="headerlink" title="Linux网络编程"></a>Linux网络编程</h1><p>通过fork函数来创建一个进程副本<code>pit_t fork(void)</code></p>
+<p>对于父进程：fork函数返回子进程ID</p>
+<p>对于子进程：fork函数返回0</p>
+<p>利用<code>wait 和 waitpid</code>函数来等待进程的结束，防止僵尸进程的产生。</p>
+<p>wait是阻塞的等待，而waitpid是非阻塞的等待。</p>
+<h3 id="I-O复用"><a href="#I-O复用" class="headerlink" title="I&#x2F;O复用"></a>I&#x2F;O复用</h3><h3 id="select"><a href="#select" class="headerlink" title="select"></a>select</h3><p><code>select</code> 实现 I&#x2F;O 多路复用的工作原理</p>
+<ol>
+<li><strong>文件描述符集</strong>： <code>select</code> 使用 <code>fd_set</code> 类型来存储一组文件描述符。程序使用 <code>FD_SET</code>、<code>FD_CLR</code>、<code>FD_ISSET</code> 和 <code>FD_ZERO</code> 等宏来操作这些集合。</li>
+<li><strong>监视多个文件描述符</strong>：通过 <code>FD_SET</code> 将感兴趣的文件描述符（如套接字）添加到集合中。然后调用 <code>select</code>，传递这些集合。<code>select</code> 会阻塞，直到其中至少有一个文件描述符可以执行非阻塞 I&#x2F;O 操作。</li>
+<li><strong>处理活动文件描述符</strong>：当 <code>select</code> 返回时，遍历文件描述符集，使用 <code>FD_ISSET</code> 宏检查哪个文件描述符有活动（如新连接、可读数据等），然后对这些文件描述符执行相应的操作。</li>
+</ol>
+<ul>
+<li><strong>优点</strong>：<ul>
+<li>可以在单个线程中处理多个客户端连接。</li>
+<li>易于理解和使用。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：<ul>
+<li>有最大文件描述符数的限制。</li>
+<li>当文件描述符数量较大时，性能下降，因为需要线性扫描文件描述符集。</li>
+<li><code>select</code> 每次调用后都需要重新初始化文件描述符集，增加了额外的开销。</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2024/07/31/C++asio/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/31/Effective/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/31/concurrency/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"lRNjMHJuYBjEDxG7qZ3nMGPi-gzGzoHsz","appKey":"SAOxud4u65tFtKVuwrFrHaQN","path":"window.location.pathname","placeholder":"说点什么吧","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

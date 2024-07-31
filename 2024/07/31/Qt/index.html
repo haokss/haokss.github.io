@@ -1,0 +1,1227 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Qt基础Qt元对象编辑器moc元对象编辑器moc是负责解析c++中不存在的例如：signals、slot、emit等关键字，moc通过解析包含Q_OBJECT宏的类，生成能够处理信号和槽连接代码。 解析属性宏，生成相应的代码。 能使得Qt在运行时进行反射操作，比如查找类的方法、属性以及信号的槽。 Qt元对象系统：元对象系统是Qt框架中独特的拓展，用来增强C++语言动态特性。 使用元对象系统必须包括">
+<meta property="og:type" content="article">
+<meta property="og:title" content="haoks">
+<meta property="og:url" content="http://example.com/2024/07/31/Qt/index.html">
+<meta property="og:site_name" content="haoks">
+<meta property="og:description" content="Qt基础Qt元对象编辑器moc元对象编辑器moc是负责解析c++中不存在的例如：signals、slot、emit等关键字，moc通过解析包含Q_OBJECT宏的类，生成能够处理信号和槽连接代码。 解析属性宏，生成相应的代码。 能使得Qt在运行时进行反射操作，比如查找类的方法、属性以及信号的槽。 Qt元对象系统：元对象系统是Qt框架中独特的拓展，用来增强C++语言动态特性。 使用元对象系统必须包括">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240528103326318.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200618175807591.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyOTU2MTc5,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240707225650834.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240602003656723.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240602003920702.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240602003951337.png">
+<meta property="og:image" content="d:\Documents\Tencent Files\2920611818\FileRecv\MobileFile\1717817924752.jpg">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240606155743409.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240605121143415.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240603115014949.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240603115040219.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240605164323154.png">
+<meta property="og:image" content="d:\Documents\Tencent Files\2920611818\FileRecv\MobileFile\1717578701216.jpg">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240605175741852.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240604235720014.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531110111671.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240605105400027.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120044731.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120102467.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120346639.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120358497.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120653964.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531104613496.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240605105528128.png">
+<meta property="og:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120904547.png">
+<meta property="article:published_time" content="2024-07-31T13:07:01.665Z">
+<meta property="article:modified_time" content="2024-07-26T15:20:08.275Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="c:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240528103326318.png">
+  
+  
+  
+  <title>haoks</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"lRNjMHJuYBjEDxG7qZ3nMGPi-gzGzoHsz","app_key":"SAOxud4u65tFtKVuwrFrHaQN","server_url":"https://lrnjmhju.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>haoks</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-31 21:07" pubdate>
+          2024年7月31日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          61 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header"></h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="Qt基础"><a href="#Qt基础" class="headerlink" title="Qt基础"></a>Qt基础</h3><h4 id="Qt元对象编辑器moc"><a href="#Qt元对象编辑器moc" class="headerlink" title="Qt元对象编辑器moc"></a>Qt元对象编辑器moc</h4><p>元对象编辑器moc是负责解析c++中不存在的例如：signals、slot、emit等关键字，moc通过解析包含Q_OBJECT宏的类，生成能够处理信号和槽连接代码。</p>
+<p>解析属性宏，生成相应的代码。</p>
+<p>能使得Qt在运行时进行反射操作，比如查找类的方法、属性以及信号的槽。</p>
+<h4 id="Qt元对象系统："><a href="#Qt元对象系统：" class="headerlink" title="Qt元对象系统："></a>Qt元对象系统：</h4><p>元对象系统是Qt框架中独特的拓展，用来增强C++语言动态特性。</p>
+<p>使用元对象系统必须包括以下三个方面：</p>
+<p>1、QObject类是所有使用元对象系统的类的基类</p>
+<p>2、必须在一个类的开头部分插入宏Q_OBJECT，这样这个类才能使用元对象系统的特性。</p>
+<p>3、MOC为每个QObject的子类提供必要的代码实现元对象系统的特性。</p>
+<p>支持的特性：</p>
+<ul>
+<li>动态属性系统</li>
+<li>信号和槽机制</li>
+<li>反射机制</li>
+<li>动态类型信息</li>
+</ul>
+<h2 id="坐标系统"><a href="#坐标系统" class="headerlink" title="坐标系统"></a>坐标系统</h2><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240528103326318.png" srcset="/img/loading.gif" lazyload alt="image-20240528103326318" style="zoom: 80%;" />
+
+<p>获取当前标签位置:</p>
+<p>pos()函数返回的是子窗口的左上角相对于父窗口的位置：</p>
+<p><code>QPoint pos = ui-&gt;pushButton-&gt;pos();</code></p>
+<p>mapToGlobal()函数返回控件的左上角坐标相对于整个屏幕的坐标</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs abnf">QPoint pos <span class="hljs-operator">=</span> ui-&gt;pushButton-&gt;pos()<span class="hljs-comment">; </span><br>QPoint posLeftUp <span class="hljs-operator">=</span> w.mapToGlobal(pos)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<p>而对于事件QEvent，通过gloPos()函数可以直接获取事件的屏幕坐标</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">QPoint point <span class="hljs-operator">=</span> event-&gt;globalPos()<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="类继承关系"><a href="#类继承关系" class="headerlink" title="类继承关系"></a>类继承关系</h2><p><img src="https://img-blog.csdnimg.cn/20200618175807591.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyOTU2MTc5,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="QWidget"><a href="#QWidget" class="headerlink" title="QWidget"></a>QWidget</h2><p>属性：</p>
+<blockquote>
+<p>sizePolicy 类型 QSizePolicy定义了组件在水平和垂直方向上的尺寸变化策略</p>
+</blockquote>
+<blockquote>
+<p>QSizePolicy::fixed: 固定尺寸， QWidget的sizeHint()函数返回组件的建议尺寸作为组件的固定尺寸，即使使用了布局管理，组件也不会被放大或者缩小</p>
+</blockquote>
+<p>作为窗口：</p>
+<blockquote>
+<p>windowOpacity  设置窗口的透明度</p>
+</blockquote>
+<p>信号：</p>
+<blockquote>
+<p>void customContextMenuRequested(const QPoint &amp;pos) 在组件上点击鼠标右键时发射，可以用于创建组件的快捷菜单</p>
+</blockquote>
+<h2 id="QPushButton"><a href="#QPushButton" class="headerlink" title="QPushButton"></a>QPushButton</h2><p>设置按钮背景图的方式</p>
+<p>​	0、通过设置图标Icon来设置图片背景</p>
+<p>​	1、通过QSS 设置 border-image</p>
+<p>​	2、自定义继承按钮类，通过重写paintEvent,重画背景图片</p>
+<h2 id="QAction"><a href="#QAction" class="headerlink" title="QAction"></a>QAction</h2><h2 id="QMenu"><a href="#QMenu" class="headerlink" title="QMenu"></a>QMenu</h2><h2 id="QLineEdit"><a href="#QLineEdit" class="headerlink" title="QLineEdit"></a>QLineEdit</h2><h2 id="QToolButton"><a href="#QToolButton" class="headerlink" title="QToolButton"></a>QToolButton</h2><h2 id="QTimer"><a href="#QTimer" class="headerlink" title="QTimer"></a>QTimer</h2><p>创建定时器</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">QTime *m_timeWait = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QTimer</span>(<span class="hljs-keyword">this</span>);<br><span class="hljs-comment">// 定时器时间</span><br>m_timeWait-&gt;<span class="hljs-built_in">setInterval</span>(<span class="hljs-number">5000</span>);<br><span class="hljs-comment">// 开启定时器</span><br>m_timeWait-&gt;<span class="hljs-built_in">start</span>();<br><span class="hljs-comment">// 定时结束绑定事件处理</span><br><span class="hljs-built_in">connect</span>(m_timeWait, <span class="hljs-built_in">SIGNAL</span>(<span class="hljs-built_in">timeout</span>()), <span class="hljs-keyword">this</span>, <span class="hljs-built_in">SLOT</span>(<span class="hljs-built_in">doTimeSwitch</span>()));<br></code></pre></td></tr></table></figure>
+
+<p>创建单次定时器</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++">m_animWait = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QTimer</span>(<span class="hljs-keyword">this</span>);<br>m_animWait-&gt;<span class="hljs-built_in">singleShot</span>(m_animContinue, Qt::PreciseTimer, <span class="hljs-keyword">this</span>, [<span class="hljs-keyword">this</span>]()&#123;<br>	m_isAllowedLR = <span class="hljs-literal">true</span>;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="QTreeWidget"><a href="#QTreeWidget" class="headerlink" title="QTreeWidget"></a>QTreeWidget</h2><p>一个QTreeWidget组件显示内容分为表头和目录树两部分，表头和目录树结点都是QTreeWidgetItem对象</p>
+<p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240707225650834.png" srcset="/img/loading.gif" lazyload alt="image-20240707225650834"></p>
+<p><strong>顶层节点：</strong>目录树中一行就是一个节点，目录树中最上层的节点成为顶层节点，<strong>顶层节点没有父节点，一个目录树中可以有多个顶层节点</strong>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">addTopLevelItem</span><span class="hljs-params">(QTreeWidgetItem *item)</span></span>;	<span class="hljs-comment">// 添加一个顶层节点</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">indexOfTopLevelItem</span><span class="hljs-params">(QTreeWidgetItem *item)</span></span>; <span class="hljs-comment">// 返回一个顶层节点的序列号</span><br></code></pre></td></tr></table></figure>
+
+<p>**次级节点:**所有次级节点都直接或者间接挂在某个顶层节点下面。</p>
+<p><strong>隐藏的根节点：</strong>目录树中有一个隐藏的根节点，是所有顶层节点的父节点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">QTreeWidgetItem *<span class="hljs-title">QTreeWidget::invisibleRootItem</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// 获取隐藏的根节点</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="QTreeWidgetItem"><a href="#QTreeWidgetItem" class="headerlink" title="QTreeWidgetItem"></a>QTreeWidgetItem</h3><p><strong>构造QTreeWidgetItem</strong>：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">QTreeWidgetItem(int <span class="hljs-keyword">type</span> <span class="hljs-type">= </span><span class="hljs-keyword">Type</span>);<br></code></pre></td></tr></table></figure>
+
+<p>可以传递一个整数表示节点类型，这个类型是自定义的</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">TreeItemType</span>&#123;<br>    TreeItemPro = <span class="hljs-number">1</span>,<br>    TreeItemDir = <span class="hljs-number">2</span>,<br>    TreeItemPic = <span class="hljs-number">3</span>,<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>然后可以通过<code>QTreeWidget::addTopLevelItem()</code>添加到顶层节点，或者通过<code>QTreeWidgetItem::addChild()</code>将其添加为一个节点的子节点。</p>
+<p><strong>设置节点中每一列数据：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp">item-&gt;<span class="hljs-built_in">setText</span>(<span class="hljs-number">0</span>, name);<br>item-&gt;<span class="hljs-built_in">setIcon</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">QIcon</span>(<span class="hljs-string">&quot;:/icon/icon/dir.png&quot;</span>));<br>item-&gt;<span class="hljs-built_in">setToolTip</span>(<span class="hljs-number">0</span>, src_path);<br><span class="hljs-comment">// 使用另一种方式    </span><br>item-&gt;<span class="hljs-built_in">setData</span>(<span class="hljs-number">0</span>, Qt::DisplayRole, name); <span class="hljs-comment">// 使用DisplayRole设置文本</span><br>item-&gt;<span class="hljs-built_in">setData</span>(<span class="hljs-number">0</span>, Qt::DecorationRole, <span class="hljs-built_in">QIcon</span>(<span class="hljs-string">&quot;:/icon/icon/dir.png&quot;</span>)); <span class="hljs-comment">// 使用DecorationRole设置图标</span><br>item-&gt;<span class="hljs-built_in">setData</span>(<span class="hljs-number">0</span>, Qt::ToolTipRole, src_path); <span class="hljs-comment">// 使用ToolTipRole设置提示</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="QLayout"><a href="#QLayout" class="headerlink" title="QLayout"></a>QLayout</h2><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240602003656723.png" srcset="/img/loading.gif" lazyload alt="image-20240602003656723"></p>
+<p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240602003920702.png" srcset="/img/loading.gif" lazyload alt="image-20240602003920702"><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240602003951337.png" srcset="/img/loading.gif" lazyload alt="image-20240602003951337"></p>
+<blockquote>
+<p>setMargins();</p>
+</blockquote>
+<blockquote>
+<p>setContentMargins();</p>
+<p>作用：将多个控件当作一个整体，保证这个整体离布局的距离为(Left, Top, Right, Bottom)这几个参数。</p>
+</blockquote>
+<p>控件间距调整：</p>
+<blockquote>
+<p>setSpacing()</p>
+<p>作用：设置某个布局下各个控件之间的间距</p>
+</blockquote>
+<p>弹簧布局：</p>
+<blockquote>
+<p>addStretch() setStretch()</p>
+<p>作用：增加弹簧布局，参数大小代表弹簧弹力，不同的弹力大小代表控件比例，同类型的函数还有 setStretchFactor()。</p>
+</blockquote>
+<h4 id="QHBoxLayout"><a href="#QHBoxLayout" class="headerlink" title="QHBoxLayout"></a>QHBoxLayout</h4><p>水平布局</p>
+<h4 id="QVBoxLayout"><a href="#QVBoxLayout" class="headerlink" title="QVBoxLayout"></a>QVBoxLayout</h4><p>垂直布局</p>
+<h4 id="QGridLayout"><a href="#QGridLayout" class="headerlink" title="QGridLayout"></a>QGridLayout</h4><p>网格布局</p>
+<h4 id="QFromLayout"><a href="#QFromLayout" class="headerlink" title="QFromLayout"></a>QFromLayout</h4><p>表单布局，适用于两列管理的布局</p>
+<h4 id="QStackedLayout"><a href="#QStackedLayout" class="headerlink" title="QStackedLayout"></a>QStackedLayout</h4><p>堆叠布局，适用于多个页面切换的布局</p>
+<h3 id="QSpacerItem"><a href="#QSpacerItem" class="headerlink" title="QSpacerItem"></a>QSpacerItem</h3><p>布局中的占位符，可以用来填充剩余空间</p>
+<h3 id="QSplitter"><a href="#QSplitter" class="headerlink" title="QSplitter"></a>QSplitter</h3><p>分割条组件类，用来水平或者竖直的分割两个界面组件，使得两个控件所占空间能够随时改变</p>
+<h2 id="QEvent"><a href="#QEvent" class="headerlink" title="QEvent"></a>QEvent</h2><p>什么情况是事件接受，什么情况是事件被接受</p>
+<p>event-&gt;button()</p>
+<p>返回单次按下的按键，不包括按下</p>
+<p>event-&gt;buttons()</p>
+<p>返回按下的组合按键，包括之前已经按下但未松开的按钮</p>
+<p>Event-&gt;buttons()的返回是 Qt::MouseButton<br>返回值为以下几种类型：</p>
+<table>
+<thead>
+<tr>
+<th align="center">Qt::NoButton</th>
+<th align="center">0x00000000</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Qt::LeftButton</td>
+<td align="center">0x00000001</td>
+</tr>
+<tr>
+<td align="center">Qt::RightButton</td>
+<td align="center">0x00000002</td>
+</tr>
+<tr>
+<td align="center">Qt::MidButton</td>
+<td align="center">0x00000004</td>
+</tr>
+</tbody></table>
+<p>当左键按下时，返回值是1   右键 2    中键 4    左+右 3     左+中 5     右+中 6   左右中 7</p>
+<h2 id="QMimeData"><a href="#QMimeData" class="headerlink" title="QMimeData"></a>QMimeData</h2><h2 id="QDialog"><a href="#QDialog" class="headerlink" title="QDialog"></a>QDialog</h2><h3 id="窗口类的重要特性设置"><a href="#窗口类的重要特性设置" class="headerlink" title="窗口类的重要特性设置"></a>窗口类的重要特性设置</h3><p>窗口显示或运行的一些特性可以通过QWidget的一些函数设置，如setAttribute() , setWindowFlag(), setWindowState()</p>
+<p>模态（modal）窗口：窗口弹出后，没关闭之前，<strong>不可以</strong>对同一应用程序的其他窗口进行操作；<br>非模态（modeless）窗口：窗口弹出后，没关闭之前，<strong>可以</strong>对同一应用程序的其他窗口进行操作，可以同时和多个窗口进行交互；</p>
+<h4 id="setAttribute"><a href="#setAttribute" class="headerlink" title="setAttribute()"></a>setAttribute()</h4><p>![1717816731342](D:\Documents\Tencent Files\2920611818\FileRecv\MobileFile\1717816731342.jpg)</p>
+<h4 id="setWindowFlag"><a href="#setWindowFlag" class="headerlink" title="setWindowFlag()"></a>setWindowFlag()</h4><p>![1717816795244](D:\Documents\Tencent Files\2920611818\FileRecv\MobileFile\1717816795244.jpg)</p>
+<img src="D:\Documents\Tencent Files\2920611818\FileRecv\MobileFile\1717817924752.jpg" srcset="/img/loading.gif" lazyload alt="1717817924752" style="zoom: 67%;" />
+
+<h4 id="setWindowState"><a href="#setWindowState" class="headerlink" title="setWindowState()"></a>setWindowState()</h4><p>![1717817721460](D:\Documents\Tencent Files\2920611818\FileRecv\MobileFile\1717817721460.jpg)</p>
+<h4 id="setWindowModality"><a href="#setWindowModality" class="headerlink" title="setWindowModality()"></a>setWindowModality()</h4><p>![1717817816783](D:\Documents\Tencent Files\2920611818\FileRecv\MobileFile\1717817816783.jpg)</p>
+<h3 id="QFileDialog文件对话框"><a href="#QFileDialog文件对话框" class="headerlink" title="QFileDialog文件对话框"></a>QFileDialog文件对话框</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QString getOpenFileName()</td>
+<td>选择打开一个文件，返回选择文件的文件名</td>
+</tr>
+<tr>
+<td>QStringList getOpenFileName()</td>
+<td>选择打开多个文件，返回选择的所有文件的文件名列表</td>
+</tr>
+<tr>
+<td>QString getSaveFileName()</td>
+<td>选择保存一个文件，返回保存的文件的文件名</td>
+</tr>
+<tr>
+<td>QString getExistingDirectory()</td>
+<td>选择一个已有的目录，返回所选目录的完整路径</td>
+</tr>
+<tr>
+<td>QUrl getOpenFileUrl()</td>
+<td>选择打开一个文件，可选择打开远程网络文件</td>
+</tr>
+<tr>
+<td>void SaveFileContent()</td>
+<td>将一个QByteArray类型的字节数据数组的内容保存为文件</td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 使用过滤的方法打开一个文件</span><br>QString curPath = QDir::<span class="hljs-built_in">currentPath</span>();<br>QString filter = <span class="hljs-string">&quot;程序文件(*.h *.cpp);;文本文件(*.txt);;所有文件(*.*)&quot;</span>;<br>QString fileLog = QFileDialog::<span class="hljs-built_in">getOpenFileName</span>(<span class="hljs-keyword">this</span>,<span class="hljs-string">&quot;选择一个文件 &quot;</span>,curPath, filter);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 保存一个文件</span><br>QString curPath = QDir::<span class="hljs-built_in">currentPath</span>();<br>QString filter = <span class="hljs-string">&quot;h 文件(*.h);;C++文件(*.cpp);;文本文件(*.txt);;所有文件(*.*)&quot;</span>;<br>QString aFileName = QFileDialog::<span class="hljs-built_in">getSaveFileName</span>(<span class="hljs-keyword">this</span>,<span class="hljs-string">&quot;另存文件夹 &quot;</span>,curPath,filter);<br><span class="hljs-keyword">if</span>(aFileName.<span class="hljs-built_in">isEmpty</span>())<br><span class="hljs-keyword">return</span>;<br><span class="hljs-comment">// 设置当前目录为打开的另存目录</span><br><span class="hljs-function">QFileInfo <span class="hljs-title">fileInfo</span><span class="hljs-params">(aFileName)</span></span>;<br>QDir::<span class="hljs-built_in">setCurrent</span>(fileInfo.<span class="hljs-built_in">absolutePath</span>());<br><span class="hljs-function">QFile <span class="hljs-title">aFile</span><span class="hljs-params">(aFileName)</span></span>;<br><span class="hljs-keyword">if</span>(!aFile.<span class="hljs-built_in">open</span>(QIODevice::WriteOnly | QIODevice::Text))<br>	<span class="hljs-keyword">return</span> ;<br>QString str = ui-&gt;plainTextEdit-&gt;<span class="hljs-built_in">toPlainText</span>();<br>QByteArray strBytes = str.<span class="hljs-built_in">toUtf8</span>();<br>aFile.<span class="hljs-built_in">close</span>();<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="QColorDialog颜色对话框"><a href="#QColorDialog颜色对话框" class="headerlink" title="QColorDialog颜色对话框"></a>QColorDialog颜色对话框</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 使用静态函数打开颜色对话框</span><br><span class="hljs-function">QColor <span class="hljs-title">QColorDialog::getColor</span><span class="hljs-params">()</span></span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="QFontDialog字体对话框"><a href="#QFontDialog字体对话框" class="headerlink" title="QFontDialog字体对话框"></a>QFontDialog字体对话框</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 打开字体对话框</span><br><span class="hljs-function">QFont <span class="hljs-title">QFontDialog::getFont</span><span class="hljs-params">()</span></span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="QInputDialog标准输入对话框"><a href="#QInputDialog标准输入对话框" class="headerlink" title="QInputDialog标准输入对话框"></a>QInputDialog标准输入对话框</h3><h3 id="QMessageBox消息对话框"><a href="#QMessageBox消息对话框" class="headerlink" title="QMessageBox消息对话框"></a>QMessageBox消息对话框</h3><h2 id="QIODevice"><a href="#QIODevice" class="headerlink" title="QIODevice"></a>QIODevice</h2><h3 id="QCoreApplicaton"><a href="#QCoreApplicaton" class="headerlink" title="QCoreApplicaton"></a>QCoreApplicaton</h3><p>​	为无UI应用程序提供事件循环的类，所有应用程序的基类，其子类QGuiApplication是具有GUI的应用程序类，具有主事件循环，能够处理和派发来自操作系统或者其他来源的事件。</p>
+<p>QGuiApplication的子类QApplication为QWidget应用程序提供支持，包括界面的初始化。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 设置应用程序组织名</span><br>QCoreApplication::<span class="hljs-built_in">setOrganizationName</span>(<span class="hljs-string">&quot;HAOKS&quot;</span>);<br><span class="hljs-comment">// 设置应用程序名</span><br>QCoreApplication::<span class="hljs-built_in">setApplicationName</span>(<span class="hljs-string">&quot;FILE TEST&quot;</span>);<br><span class="hljs-comment">// 获取可执行文件所在的完整文件目录</span><br>QString str = QCoreApplication::<span class="hljs-built_in">applicationDirPath</span>();<br><span class="hljs-comment">// 获取文件的完整执行目录</span><br>str.<span class="hljs-built_in">append</span>(<span class="hljs-string">&quot;\n applicationFilePath: &quot;</span> + QApplication::<span class="hljs-built_in">applicationFilePath</span>());<br><span class="hljs-comment">// 获取文件名</span><br>str.<span class="hljs-built_in">append</span>(<span class="hljs-string">&quot;\n applicationName: &quot;</span> + QApplication::<span class="hljs-built_in">applicationName</span>());<br>ui-&gt;plainTextEdit-&gt;<span class="hljs-built_in">appendPlainText</span>(str + <span class="hljs-string">&#x27;\n&#x27;</span>);<br><span class="hljs-comment">// 退出程序</span><br>QCoreApplication::<span class="hljs-built_in">exit</span>();<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="QFile"><a href="#QFile" class="headerlink" title="QFile"></a>QFile</h3><p>主要进行文件内容的读写，还可用于文件的操作，如复制文件，删除文件，重命名文件。</p>
+<h3 id="QFileInfo"><a href="#QFileInfo" class="headerlink" title="QFileInfo"></a>QFileInfo</h3><p>用于获取文件的各种信息。</p>
+<h3 id="QSaveFile"><a href="#QSaveFile" class="headerlink" title="QSaveFile"></a>QSaveFile</h3><p>QSaveFile专门用来保存文件，可以用来保存文本文件或二进制文件。</p>
+<p>在保存文件时，QSaveFile会在目标问价所在的目录下创建一个临时文件，向文件写入数据是先写入临时文件，如果写入操作没有错误，调用QSaveFile的函数Commit()提交修改时临时文件里的内容才被移入目标文件，然后临时文件会被删除。</p>
+<p>在调用函数commit()之间，如果写入操作产生异常导致程序异常结束，目标文件不会由损失，避免了破坏文件结构。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 利用QSaveFile保存文件</span><br>QString fileName = ui-&gt;lineEdit-&gt;<span class="hljs-built_in">text</span>();<br><span class="hljs-function">QSaveFile <span class="hljs-title">aFile</span><span class="hljs-params">(fileName)</span></span>;<br><span class="hljs-keyword">if</span>(!aFile.<span class="hljs-built_in">open</span>(QIODevice::WriteOnly | QIODevice::Text))<br><span class="hljs-built_in">qDebug</span>()&lt;&lt;<span class="hljs-string">&quot;open error&quot;</span>;<br>aFile.<span class="hljs-built_in">setDirectWriteFallback</span>(<span class="hljs-literal">false</span>);<br><span class="hljs-keyword">try</span>&#123;<br>	QString str = ui-&gt;plainTextEdit-&gt;<span class="hljs-built_in">toPlainText</span>();<br>	QByteArray strBytes = str.<span class="hljs-built_in">toUtf8</span>();<br>    <span class="hljs-comment">// 写入临时文件</span><br>	aFile.<span class="hljs-built_in">write</span>(strBytes, strBytes.<span class="hljs-built_in">length</span>());<br>    <span class="hljs-comment">// 提交</span><br>	aFile.<span class="hljs-built_in">commit</span>();<br>&#125;<span class="hljs-built_in">catch</span>(QException &amp;e)&#123;<br>	<span class="hljs-built_in">qDebug</span>()&lt;&lt;<span class="hljs-string">&quot;发生错误: &quot;</span>&lt;&lt;e.<span class="hljs-built_in">what</span>();<br>    <span class="hljs-comment">// 取消写入</span><br>	aFile.<span class="hljs-built_in">cancelWriting</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="QDir"><a href="#QDir" class="headerlink" title="QDir"></a>QDir</h3><p>进行目录操作的类，在构造函数中传递一个目录字符串作为当前目录，或者使用setPath()设置目录。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">QDir <span class="hljs-title">dir</span><span class="hljs-params">(<span class="hljs-string">&quot;C:/Users/web&quot;</span>)</span></span>;<br>dir.<span class="hljs-built_in">setPath</span>(<span class="hljs-string">&quot;C:/Users/web&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>获取当前目录路径：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">QString curPath = QDir::<span class="hljs-built_in">currentPath</span>();<br></code></pre></td></tr></table></figure>
+
+<p>返回当前目录下的文件fileName的含有绝对路径的文件名</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">QString dist_path = dir.<span class="hljs-built_in">absoluteFilePath</span>(fileName);<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="QTemporaryDir"><a href="#QTemporaryDir" class="headerlink" title="QTemporaryDir"></a>QTemporaryDir</h3><p>用于创建临时目录</p>
+<h3 id="QTemporaryFile"><a href="#QTemporaryFile" class="headerlink" title="QTemporaryFile"></a>QTemporaryFile</h3><p>用于创建临时文件，临时文件可以保存在系统的临时目录、指定目录或者应用程序当前目录下。QTemporaryFile的父类为QFile。</p>
+<h3 id="QFileSystemWatcher"><a href="#QFileSystemWatcher" class="headerlink" title="QFileSystemWatcher"></a>QFileSystemWatcher</h3><p>对目录和文件进行监视的类，父类为QObject。把某些目录或者文件添加到QFileSystemWatcher对象的监视列表后；</p>
+<p>当目录发生新建、删除文件等操作时，QFileSystemWatcher会发射directoryChanged()信号；</p>
+<p>当所监视的文件发生修改、重命名等操作时，QFileSystemWatcher会发射fileChanged()信号。</p>
+<h3 id="读写文本文件"><a href="#读写文本文件" class="headerlink" title="读写文本文件"></a>读写文本文件</h3><h4 id="1、使用QFile"><a href="#1、使用QFile" class="headerlink" title="1、使用QFile"></a>1、使用QFile</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 进行文件的读取</span><br><span class="hljs-function">QFile <span class="hljs-title">aFile</span><span class="hljs-params">(ui-&gt;lineEdit-&gt;text())</span></span>;<br><span class="hljs-keyword">if</span>(!aFile.<span class="hljs-built_in">exists</span>())<br><span class="hljs-keyword">return</span> ;<br><span class="hljs-keyword">if</span>(!aFile.<span class="hljs-built_in">open</span>(QIODevice::ReadOnly | QIODevice::WriteOnly))<br><span class="hljs-keyword">return</span> ;<br>QByteArray info = aFile.<span class="hljs-built_in">readAll</span>();<br>QString text = QString::<span class="hljs-built_in">fromUtf8</span>(info);<br>ui-&gt;plainTextEdit-&gt;<span class="hljs-built_in">appendPlainText</span>(text);<br>aFile.<span class="hljs-built_in">close</span>();<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 文件写入并保存</span><br>QString curPath = QDir::<span class="hljs-built_in">currentPath</span>();<br>QString filter = <span class="hljs-string">&quot;h 文件(*.h);;C++文件(*.cpp);;文本文件(*.txt);;所有文件(*.*)&quot;</span>;<br>QString aFileName = QFileDialog::<span class="hljs-built_in">getSaveFileName</span>(<span class="hljs-keyword">this</span>,<span class="hljs-string">&quot;另存文件夹 &quot;</span>,curPath,filter);<br><span class="hljs-keyword">if</span>(aFileName.<span class="hljs-built_in">isEmpty</span>())<br>    <span class="hljs-keyword">return</span>;<br><span class="hljs-comment">// *设置当前目录为打开的另存目录 （关键）</span><br><span class="hljs-function">QFileInfo <span class="hljs-title">fileInfo</span><span class="hljs-params">(aFileName)</span></span>;<br>QDir::<span class="hljs-built_in">setCurrent</span>(fileInfo.<span class="hljs-built_in">absolutePath</span>());<br><span class="hljs-function">QFile <span class="hljs-title">aFile</span><span class="hljs-params">(aFileName)</span></span>;<br><span class="hljs-keyword">if</span>(!aFile.<span class="hljs-built_in">open</span>(QIODevice::WriteOnly | QIODevice::Text))<br>    <span class="hljs-keyword">return</span> ;<br>QString str = ui-&gt;plainTextEdit-&gt;<span class="hljs-built_in">toPlainText</span>();<br>QByteArray strBytes = str.<span class="hljs-built_in">toUtf8</span>();<br><span class="hljs-comment">// 写入文件</span><br>aFile.<span class="hljs-built_in">write</span>(strBytes, strBytes.<span class="hljs-built_in">length</span>());<br>aFile.<span class="hljs-built_in">close</span>();<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="2、使用QFile和QTextStream"><a href="#2、使用QFile和QTextStream" class="headerlink" title="2、使用QFile和QTextStream"></a>2、使用QFile和QTextStream</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// QTextStream读取文件</span><br>QString fileName = ui-&gt;lineEdit-&gt;<span class="hljs-built_in">text</span>();<br><span class="hljs-function">QFile <span class="hljs-title">aFile</span><span class="hljs-params">(fileName)</span></span>;<br><span class="hljs-keyword">if</span>(!aFile.<span class="hljs-built_in">open</span>(QIODevice::ReadOnly | QIODevice::Text))<br>	<span class="hljs-built_in">qDebug</span>()&lt;&lt;<span class="hljs-string">&quot;open error&quot;</span>;<br><span class="hljs-function">QTextStream <span class="hljs-title">aStream</span><span class="hljs-params">(&amp;aFile)</span></span>;<br><span class="hljs-comment">// 自动检测Unicode</span><br>aStream.<span class="hljs-built_in">setAutoDetectUnicode</span>(<span class="hljs-literal">true</span>);<br>QString str = aStream.<span class="hljs-built_in">readAll</span>();<br>ui-&gt;plainTextEdit-&gt;<span class="hljs-built_in">setPlainText</span>(str);<br>aFile.<span class="hljs-built_in">close</span>();<br></code></pre></td></tr></table></figure>
+
+<h3 id="读写二进制文件"><a href="#读写二进制文件" class="headerlink" title="读写二进制文件"></a>读写二进制文件</h3><p>可以单使用QFile读写二进制文件，一般结合使用QFile和QDataStream读写二进制文件。</p>
+<h2 id="Qt-SQL"><a href="#Qt-SQL" class="headerlink" title="Qt SQL"></a>Qt SQL</h2><table>
+<thead>
+<tr>
+<th>数据库连接</th>
+<th>QSqlDataBase</th>
+<th>用于建立与数据库连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>数据库中的对象</strong></td>
+<td><strong>QSqlRecord</strong></td>
+<td>表示数据表中一项记录的类</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>QSqlField</strong></td>
+<td>表示数据库或视图的字段的类</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>QSqlIndex</strong></td>
+<td>表示数据库中索引的类</td>
+</tr>
+<tr>
+<td><strong>模型类</strong></td>
+<td><strong>QSqlTableModel</strong></td>
+<td>表示单个数据表的模型类</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>QSqlQueryModel</strong></td>
+<td>表示SQL查询结果数据的只读模型类</td>
+</tr>
+<tr>
+<td><strong>其它功能类</strong></td>
+<td><strong>QSqlQuery</strong></td>
+<td>运行各种SQL语句的类</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>QDataWidgetMapper</strong></td>
+<td>用于建立界面组件与字段的映射关系的类</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>QSqlError</strong></td>
+<td>用于表示数据库错误信息的类，访问上一次的错误信息</td>
+</tr>
+<tr>
+<td><strong>关系模型类</strong></td>
+<td>QSqlRelationalTableModel</td>
+<td>表示关系数据表的模型类</td>
+</tr>
+<tr>
+<td></td>
+<td>QSqlRelationalDelegate</td>
+<td>用于QSqlRelationalTableModel模型的一个编辑字段的代理类，这个代理类提供一个QComboxBox组件作为编辑器</td>
+</tr>
+<tr>
+<td></td>
+<td>QSqlRelation</td>
+<td>用于表示数据表外键信息的类</td>
+</tr>
+</tbody></table>
+<h4 id="以ODBC为例连接MySQL数据库"><a href="#以ODBC为例连接MySQL数据库" class="headerlink" title="以ODBC为例连接MySQL数据库"></a><strong>以ODBC为例连接MySQL数据库</strong></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 连接Mysql数据库</span><br>QSqlDatabase DB;<br>DB = QSqlDatabase::<span class="hljs-built_in">addDatabase</span>(<span class="hljs-string">&quot;QODBC&quot;</span>);<br>DB.<span class="hljs-built_in">setHostName</span>(<span class="hljs-string">&quot;127.0.0.1&quot;</span>);<br>DB.<span class="hljs-built_in">setPort</span>(<span class="hljs-number">3306</span>);<br>DB.<span class="hljs-built_in">setUserName</span>(<span class="hljs-string">&quot;root&quot;</span>);<br>DB.<span class="hljs-built_in">setPassword</span>(<span class="hljs-string">&quot;123456&quot;</span>);<br>DB.<span class="hljs-built_in">setDatabaseName</span>(<span class="hljs-string">&quot;hotel&quot;</span>);<br><span class="hljs-keyword">if</span>(!DB.<span class="hljs-built_in">open</span>())&#123;<br>    ui-&gt;labelDataBase-&gt;<span class="hljs-built_in">setText</span>(<span class="hljs-string">&quot;数据库连接失败！&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 创建数据模型，打开数据表</span><br>tabModel = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QSqlTableModel</span>(<span class="hljs-keyword">this</span>,DB);<br><span class="hljs-comment">// 设置数据表</span><br>tabModel-&gt;<span class="hljs-built_in">setTable</span>(<span class="hljs-string">&quot;user&quot;</span>);<br><span class="hljs-comment">// 设置数据保存方式</span><br>tabModel-&gt;<span class="hljs-built_in">setEditStrategy</span>(QSqlTableModel::OnManualSubmit);<br><span class="hljs-comment">// 数据排序方式</span><br>tabModel-&gt;<span class="hljs-built_in">setSort</span>(tabModel-&gt;<span class="hljs-built_in">fieldIndex</span>(<span class="hljs-string">&quot;account&quot;</span>),Qt::AscendingOrder);<br><span class="hljs-comment">// 利用数据排序规则和过滤规则刷新数据模型</span><br><span class="hljs-keyword">if</span>(!(tabModel-&gt;<span class="hljs-built_in">select</span>()))&#123;<br>	<span class="hljs-built_in">qDebug</span>()&lt;&lt;<span class="hljs-string">&quot;错误信息：&quot;</span>&lt;&lt;tabModel-&gt;<span class="hljs-built_in">lastError</span>().<span class="hljs-built_in">text</span>();<br>	<span class="hljs-keyword">return</span> ;<br>&#125;<br><span class="hljs-comment">// 设置显示字段标题</span><br>tabModel-&gt;<span class="hljs-built_in">setHeaderData</span>(tabModel-&gt;<span class="hljs-built_in">fieldIndex</span>(<span class="hljs-string">&quot;id&quot;</span>), Qt::Horizontal, <span class="hljs-string">&quot;身份证号&quot;</span>);<br>tabModel-&gt;<span class="hljs-built_in">setHeaderData</span>(tabModel-&gt;<span class="hljs-built_in">fieldIndex</span>(<span class="hljs-string">&quot;account&quot;</span>),Qt::Horizontal,<span class="hljs-string">&quot;手机号&quot;</span>);<br>tabModel-&gt;<span class="hljs-built_in">setHeaderData</span>(tabModel-&gt;<span class="hljs-built_in">fieldIndex</span>(<span class="hljs-string">&quot;pwd&quot;</span>),Qt::Horizontal, <span class="hljs-string">&quot;密码&quot;</span>);<br>tabModel-&gt;<span class="hljs-built_in">setHeaderData</span>(tabModel-&gt;<span class="hljs-built_in">fieldIndex</span>(<span class="hljs-string">&quot;username&quot;</span>),Qt::Horizontal,<span class="hljs-string">&quot;姓名&quot;</span>);<br>tabModel-&gt;<span class="hljs-built_in">setHeaderData</span>(tabModel-&gt;<span class="hljs-built_in">fieldIndex</span>(<span class="hljs-string">&quot;permission&quot;</span>),Qt::Horizontal, <span class="hljs-string">&quot;权限&quot;</span>);<br>tabModel-&gt;<span class="hljs-built_in">setHeaderData</span>(tabModel-&gt;<span class="hljs-built_in">fieldIndex</span>(<span class="hljs-string">&quot;ava&quot;</span>),Qt::Horizontal,<span class="hljs-string">&quot;头像&quot;</span>);<br>tabModel-&gt;<span class="hljs-built_in">setHeaderData</span>(tabModel-&gt;<span class="hljs-built_in">fieldIndex</span>(<span class="hljs-string">&quot;gender&quot;</span>),Qt::Horizontal, <span class="hljs-string">&quot;性别&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="选择模型"><a href="#选择模型" class="headerlink" title="选择模型"></a>选择模型</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 创建选择模型</span><br>selModel = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QItemSelectionModel</span>(tabModel, <span class="hljs-keyword">this</span>);<br><span class="hljs-comment">// 在此处绑定选择模型变化的信号和槽</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="模型-视图结构"><a href="#模型-视图结构" class="headerlink" title="模型&#x2F;视图结构"></a>模型&#x2F;视图结构</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 构建模型视图结构 视图为：QTableView</span><br>ui-&gt;tableViewUser-&gt;<span class="hljs-built_in">setModel</span>(tabModel);          <span class="hljs-comment">// 设置数据模型</span><br> <span class="hljs-comment">// 设置选择模型</span><br>ui-&gt;tableViewUser-&gt;<span class="hljs-built_in">setSelectionModel</span>(selModel);<br><span class="hljs-comment">// 隐藏列</span><br>ui-&gt;tableViewUser-&gt;<span class="hljs-built_in">setColumnHidden</span>(tabModel-&gt;<span class="hljs-built_in">fieldIndex</span>(<span class="hljs-string">&quot;ava&quot;</span>),<span class="hljs-literal">true</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="数据到界面组件映射"><a href="#数据到界面组件映射" class="headerlink" title="数据到界面组件映射"></a>数据到界面组件映射</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 创建数据映射 </span><br>QDataWidgetMapper   *dataMapper;  <br>dataMapper= <span class="hljs-keyword">new</span> <span class="hljs-built_in">QDataWidgetMapper</span>(<span class="hljs-keyword">this</span>);<br>dataMapper-&gt;<span class="hljs-built_in">setSubmitPolicy</span>(QDataWidgetMapper::AutoSubmit);<br>dataMapper-&gt;<span class="hljs-built_in">setModel</span>(qryModel);<br><br><span class="hljs-comment">// 界面组件与数据模型的具体字段之间的映射</span><br>dataMapper-&gt;<span class="hljs-built_in">addMapping</span>(ui-&gt;dbSpinEmpNo, rec.<span class="hljs-built_in">indexOf</span>(<span class="hljs-string">&quot;empNo&quot;</span>));<br>dataMapper-&gt;<span class="hljs-built_in">addMapping</span>(ui-&gt;dbEditName,  rec.<span class="hljs-built_in">indexOf</span>(<span class="hljs-string">&quot;Name&quot;</span>));<br>dataMapper-&gt;<span class="hljs-built_in">addMapping</span>(ui-&gt;dbComboSex,  rec.<span class="hljs-built_in">indexOf</span>(<span class="hljs-string">&quot;Gender&quot;</span>));<br>dataMapper-&gt;<span class="hljs-built_in">addMapping</span>(ui-&gt;dbEditBirth, rec.<span class="hljs-built_in">indexOf</span>(<span class="hljs-string">&quot;Birthday&quot;</span>));<br><br>dataMapper-&gt;<span class="hljs-built_in">toFirst</span>();  <span class="hljs-comment">//移动到首记录</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="单个数据记录QSqlRecord"><a href="#单个数据记录QSqlRecord" class="headerlink" title="单个数据记录QSqlRecord"></a>单个数据记录QSqlRecord</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 获取只有字段信息的单个数据记录</span><br>QSqlRecord rec = tabModelRoom-&gt;<span class="hljs-built_in">record</span>();<br><span class="hljs-comment">// 将单个数据记录插入数据模型</span><br>tabModelRoom-&gt;<span class="hljs-built_in">insertRecord</span>(tabModelRoom-&gt;<span class="hljs-built_in">rowCount</span>(), rec);<br><span class="hljs-comment">// 提交所有未更新的修改到数据库</span><br>tabModelRoom-&gt;<span class="hljs-built_in">submitAll</span>();<br><span class="hljs-comment">// 获取第i个数据记录</span><br>QSqlRecord curRec = tabModelRoom-&gt;<span class="hljs-built_in">record</span>(i);<br></code></pre></td></tr></table></figure>
+
+<h4 id="执行SQL语句"><a href="#执行SQL语句" class="headerlink" title="执行SQL语句"></a>执行SQL语句</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp">QSqlQuery resultPwd;<br><span class="hljs-comment">// 设置SQL语句，:account为参数占位符</span><br>resultPwd.<span class="hljs-built_in">prepare</span>(<span class="hljs-string">&quot;select pwd, permission from user where user.account = :account&quot;</span>);<br><span class="hljs-comment">// 绑定占位符参数</span><br>resultPwd.<span class="hljs-built_in">bindValue</span>(<span class="hljs-string">&quot;:account&quot;</span>,account);<br><span class="hljs-comment">// 执行SQL语句</span><br>resultPwd.<span class="hljs-built_in">exec</span>();<br><span class="hljs-comment">// 向下移动一个记录</span><br>resultPwd.<span class="hljs-built_in">next</span>();<br>LoginAttri res;<br><span class="hljs-comment">// 只会处理返回的第一条结果</span><br><span class="hljs-keyword">if</span>(resultPwd.<span class="hljs-built_in">value</span>(<span class="hljs-string">&quot;pwd&quot;</span>).<span class="hljs-built_in">toString</span>() != pwd)&#123;<br>    QMessageBox::<span class="hljs-built_in">information</span>(<span class="hljs-keyword">this</span>,<span class="hljs-string">&quot;info&quot;</span>,<span class="hljs-string">&quot;密码错误&quot;</span>);<br>    <span class="hljs-keyword">return</span>;<br>&#125;<br><span class="hljs-comment">// 处理每一条记录的方法</span><br><span class="hljs-keyword">while</span> (q.<span class="hljs-built_in">next</span>()) &#123;<br>    QString username = q.<span class="hljs-built_in">value</span>(<span class="hljs-string">&quot;username&quot;</span>).<span class="hljs-built_in">toString</span>();<br>    <span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">&quot;Username:&quot;</span> &lt;&lt; username;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="QPainter绘图"><a href="#QPainter绘图" class="headerlink" title="QPainter绘图"></a>QPainter绘图</h2><p>使用QPainter在绘图设备上绘图，绘图设备见类继承关系，注意：当绘图设备为QWidget时，QPainter只能在paintEvent()内部使用。</p>
+<img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240606155743409.png" srcset="/img/loading.gif" lazyload alt="image-20240606155743409" style="zoom:150%;" />
+
+
+
+<h3 id="QPainter"><a href="#QPainter" class="headerlink" title="QPainter"></a>QPainter</h3><p>绘图主要是利用QPainter接口函数在绘图设备上绘制各种基本的图形</p>
+<h3 id="QPen"><a href="#QPen" class="headerlink" title="QPen"></a>QPen</h3><p>设置绘图时的线条特性，主要包括线宽，颜色，线形状等。</p>
+<h3 id="QBrush"><a href="#QBrush" class="headerlink" title="QBrush"></a>QBrush</h3><p>定义QPainter绘图时的一个区域的填充特性，包括填充颜色，填充样式，材质填充时的材质图片等。</p>
+<h3 id="渐变填充效果"><a href="#渐变填充效果" class="headerlink" title="渐变填充效果"></a>渐变填充效果</h3><ul>
+<li>QLinearGradient：线性渐变</li>
+<li>QRadioGradient：辐射渐变</li>
+<li>QConicalGradient：圆锥形渐变</li>
+</ul>
+<p>使用QPainter绘制图形举例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Widget::paintEvent</span><span class="hljs-params">(QPaintEvent *event)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(<span class="hljs-keyword">this</span>)</span></span>;<br>    <span class="hljs-comment">// 渲染抗锯齿</span><br>    painter.<span class="hljs-built_in">setRenderHints</span>(QPainter::Antialiasing | QPainter::TextAntialiasing);<br>    <span class="hljs-type">int</span> W = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">width</span>();<br>    <span class="hljs-type">int</span> H = <span class="hljs-keyword">this</span>-&gt;<span class="hljs-built_in">height</span>();<br>    <span class="hljs-function">QRect <span class="hljs-title">rect</span><span class="hljs-params">(W/<span class="hljs-number">4</span>, H/<span class="hljs-number">4</span>, W/<span class="hljs-number">2</span>, H/<span class="hljs-number">2</span>)</span></span>;<br>    <span class="hljs-comment">// 设置画笔</span><br>    QPen pen;<br>    pen.<span class="hljs-built_in">setWidth</span>(<span class="hljs-number">3</span>);<br>    <span class="hljs-comment">// 画笔颜色</span><br>    pen.<span class="hljs-built_in">setColor</span>(Qt::blue);<br>    <span class="hljs-comment">// 设置线条样式</span><br>    pen.<span class="hljs-built_in">setStyle</span>(Qt::SolidLine);<br>    <span class="hljs-comment">// 设置线条断点样式</span><br>    pen.<span class="hljs-built_in">setCapStyle</span>(Qt::FlatCap);<br>    <span class="hljs-comment">// 设置线条连接样式</span><br>    pen.<span class="hljs-built_in">setJoinStyle</span>(Qt::BevelJoin);<br>    painter.<span class="hljs-built_in">setPen</span>(pen);<br>    <span class="hljs-function">QPixmap <span class="hljs-title">texturePixmap</span><span class="hljs-params">(<span class="hljs-string">&quot;:/209ab910dba69ea54d89a31e10bf82d6_4983283784718022512.png&quot;</span>)</span></span>;<br>    <span class="hljs-comment">// 画刷（填充）</span><br>    QBrush brush;<br>    <span class="hljs-comment">// 设置画刷填充样式</span><br>    brush.<span class="hljs-built_in">setStyle</span>(Qt::TexturePattern);<br>    <span class="hljs-comment">// 设置QPixmap作为画刷图片</span><br>    brush.<span class="hljs-built_in">setTexture</span>(texturePixmap);<br>    <span class="hljs-comment">// 	  设置画刷颜色</span><br>    <span class="hljs-comment">//    brush.setColor(Qt::yellow);</span><br>    <span class="hljs-comment">//    brush.setStyle(Qt::SolidPattern);</span><br>    painter.<span class="hljs-built_in">setBrush</span>(brush);<br>    painter.<span class="hljs-built_in">drawRect</span>(rect);<br>    event-&gt;<span class="hljs-built_in">accept</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="QPainter绘制基本图形接口"><a href="#QPainter绘制基本图形接口" class="headerlink" title="QPainter绘制基本图形接口"></a>QPainter绘制基本图形接口</h3><p>通过函数接口绘制各种基本的图形，包括绘制图片，具体接口</p>
+<p>可以用QPainterPath记录绘制图形的路径</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 使用QPaitner在QPixmap上绘图</span><br><span class="hljs-function">QPixmap <span class="hljs-title">splice</span><span class="hljs-params">(m_width * (m_imageCount + <span class="hljs-number">2</span>), m_height)</span></span>;<br><span class="hljs-function">QPainter <span class="hljs-title">painter</span><span class="hljs-params">(&amp;splice)</span></span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="坐标系统和坐标变化"><a href="#坐标系统和坐标变化" class="headerlink" title="坐标系统和坐标变化"></a>坐标系统和坐标变化</h3><p>1、平移</p>
+<p>2、旋转</p>
+<p>3、缩放</p>
+<p>4、状态恢复和保存  </p>
+<p><strong>视口</strong>和<strong>窗口</strong>定义：</p>
+<p>视口是指绘图设备的任意一个矩形区域，使用物理坐标系。默认情况下，视口等于绘图设备的整个矩形区域。</p>
+<p>窗口和视口是同一个矩形区域但是窗口是用逻辑坐标系定义的，窗口可以直接定义矩形区域的逻辑坐标范围。</p>
+<p>物理坐标系叫做视口坐标系，逻辑坐标系也叫做窗口。通过内部坐标变化矩阵，QPainter能自动将逻辑坐标变化为绘图设备的物理坐标。</p>
+<p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240605121143415.png" srcset="/img/loading.gif" lazyload alt="image-20240605121143415"></p>
+<p>默认情况下视口等于绘图设备的整个矩形区域，它可以被设定为绘图设备的任意一个矩形区域，使用物理坐标系。</p>
+<blockquote>
+<p>QPainter::setViewPort(int x, int y, int width, int height);</p>
+</blockquote>
+<p>窗口可以任意定义矩形区域的逻辑坐标范围，在这个范围内显示个内容会映射到视口中。</p>
+<blockquote>
+<p>QPainter::serWindow(int x, int y, int width, int height);</p>
+</blockquote>
+<p>有关图片处理类</p>
+<h3 id="QImage"><a href="#QImage" class="headerlink" title="QImage"></a>QImage</h3><p>类说明：与硬件无关的表示图片类，是为设备输入输出优化设计类，可以直接进行图片像素数据的访问和操作。</p>
+<p>像素知识补充：</p>
+<blockquote>
+<p>像素<br>px（pixel），可以理解为一个最小图像单元（只能涂一个颜色）的小方块，就是1px，是一小块面积，但是一般并不强调面积的大小，只是说这是一个最小单元。</p>
+<p>1px是一个小方块，但是这个小方块的边长却不是固定的，不同的图片、显示设备都可能是不同的，甚至这个小方块可以是长方形，就是说表示为1px的小方块的宽和高，真实对应的长度可能是不同的。我们可以把一个像素理解为一个点，因为我们经常会忽略像素的大小，平时关注更多的是像素数，也就是分辨率。想象有一个投影，或远或近的打到墙面上，大小会有变化，其实像素数没变。再想象显示器有不同尺寸的，分辨率（像素数）却是相同的。这些都可以理解为是像素大小不同导致的。</p>
+</blockquote>
+<blockquote>
+<p>分辨率<br>像素是一个小方块，用这些小方块排成一个大的长方形，这个长方形就是图像，图像的分辨率为：图像宽排列的像素数 × 图像高排列的像素数。如果把像素想象成点，那么分辨率就是 宽像素数 × 高像素数。</p>
+<p>4K分辨率：是指水平方向每行像素值达到或者接近4096个（4096×2160）</p>
+</blockquote>
+<blockquote>
+<p>DPI（Dots Per Inch，每英寸点数），图像每英寸（1 英寸 &#x3D; 25.4 毫米）长度内的像素点数。</p>
+<p>我们还是应该把像素理解为小方块，dpi就可以理解为是一英寸长度内排列的像素数。通过图像的dpi我们就可以计算出在这个图像中像素的边长，如果也知道图像的分辨率（宽高像素数），就可以知道该图像的真实尺寸了。</p>
+</blockquote>
+<blockquote>
+<p>DPM（Dots Per Meter, 每米点数）, 1 DPI &#x3D; 0.0254 DPM</p>
+</blockquote>
+<blockquote>
+<p>点距（dot pitch），就是把像素理解为点的时候，点距就是两个像素点的距离。我们把像素理解为小方块，那点距其实就是像素的边长</p>
+<p>点距与DPI之间转换，点距一般用毫米表示，DPI表示1英寸（也就是25.4mm）长度内的像素数，所以点距（像素的边长）就等于 25.4 &#x2F; DPI（总长度&#x2F;个数&#x3D;每个长度）</p>
+</blockquote>
+<p>显示器规格：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>分辨率</td>
+<td>1366 * 768</td>
+</tr>
+<tr>
+<td>尺寸</td>
+<td>13寸（英寸，对角线长度）</td>
+</tr>
+<tr>
+<td>计算过程</td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>我们理解像素是个小正方形，所以显示器的宽高比例也是1366 : 768，</p>
+<p>很容易求出，宽：11.33英寸，高：6.37英寸，</p>
+<p>DPI ：1366 &#x2F; 11.33（或 768 &#x2F; 6.37）&#x3D; 120.55，</p>
+<p>点距：25.4 &#x2F; 120.55 &#x3D; 0.2107 mm</p>
+</blockquote>
+<h3 id="QPixmap"><a href="#QPixmap" class="headerlink" title="QPixmap"></a>QPixmap</h3><p>类说明：为了在屏幕上显示图片而优化设计的类。</p>
+<p>缩放到指定高度</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">scaledToHeight</span>(int);<br></code></pre></td></tr></table></figure>
+
+<p>缩放到指定宽度 </p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-built_in">scaledToWidth</span>(int);<br></code></pre></td></tr></table></figure>
+
+<p>缩放到指定宽度和高度</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-built_in">scaled</span>(<span class="hljs-type">const</span> QSize &amp;size, Qt::AspectRatioMode aspectRatioMode = Qt::IgnoreAspectRatio, Qt::TransformationMode transformMode = Qt::FastTransformation) <br></code></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240603115014949.png" srcset="/img/loading.gif" lazyload alt="image-20240603115014949"></p>
+<p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240603115040219.png" srcset="/img/loading.gif" lazyload alt="image-20240603115040219"></p>
+<blockquote>
+<h4 id="QImage与QPixmap的区别"><a href="#QImage与QPixmap的区别" class="headerlink" title="QImage与QPixmap的区别"></a>QImage与QPixmap的区别</h4><p>1、QPixmap主要是用于绘图，针对屏幕显示而最佳化设计，QImage主要是为图像I&#x2F;O、图片访问和像素修改而设计的</p>
+<p>2、QPixmap依赖于所在的平台的绘图引擎，故例如反锯齿等一些效果在不同的平台上可能会有不同的显示效果，QImage使用Qt自身的绘图引擎，可在不同平台上具有相同的显示效果</p>
+<p>3、目前的Qt会把QPixmap都存储在graphics memory中，QImage是存储在客户端的，是独立于硬件的。在 X11, Mac 以及 Symbian平台上，QPixmap 是存储在服务器端，而QImage则是存储在客户端，在Windows平台上，QPixmap和QImage都是存储在客户端，并不使用任何的GDI资源。</p>
+<p>4、由于QImage是独立于硬件的，也是一种QPaintDevice，因此我们可以在另一个线程中对其进行绘制，而不需要在GUI线程中处理，使用这一方式可以很大幅度提高UI响应速度。</p>
+<p>5、QImage可通过setPixpel()和pixel()等方法直接存取指定的像素。当图片较大时，我们可以先通过QImage将图片加载进来，然后把图片缩放成需要的尺寸，最后转换成QPixmap 进行显示。</p>
+</blockquote>
+<h3 id="QBitmap"><a href="#QBitmap" class="headerlink" title="QBitmap"></a>QBitmap</h3><p>是QPixmap的子类，用于表示一位色深的单色位图</p>
+<h3 id="QPicture"><a href="#QPicture" class="headerlink" title="QPicture"></a>QPicture</h3><p>可以记录和重现QPainter的各条命令</p>
+<h3 id="图形-视图架构"><a href="#图形-视图架构" class="headerlink" title="图形&#x2F;视图架构"></a>图形&#x2F;视图架构</h3><p>采用QPainter需要在绘图设备事件处理函数paintEvent()编写代码来实现绘图，绘制的是位图。<strong>对于绘制复杂可交互</strong>的图形使用图形&#x2F;视图架构，每个图像都是可选择的，可拖放，可修改的。</p>
+<p>由三部分组成 1、<strong>场景</strong>  2、<strong>视图</strong> 3、<strong>图形项</strong></p>
+<img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240605164323154.png" srcset="/img/loading.gif" lazyload alt="image-20240605164323154" style="zoom:80%;" />
+
+
+
+<h4 id="1、QGraphicsScene场景"><a href="#1、QGraphicsScene场景" class="headerlink" title="1、QGraphicsScene场景"></a>1、QGraphicsScene场景</h4><p>场景是一个抽象的管理图形的容器，可以向场景中添加图形项，可以获取场景中的图形项。</p>
+<p>主要功能：</p>
+<ul>
+<li><p>提供管理大量图形项的快速接口</p>
+</li>
+<li><p>将事件传播给每个图形项</p>
+</li>
+<li><p>管理每个图形项的状态，如：选择状态，焦点状态</p>
+</li>
+<li><p>管理未经变换的渲染功能，主要用于打印</p>
+</li>
+</ul>
+<p>场景中同时除了图形项还存在 <strong>背景层</strong>和 <strong>前景层</strong></p>
+<blockquote>
+<p>setBackgroundBrush() 设置背景层画刷</p>
+<p>setForegroundBrush() 设置前景层画刷</p>
+</blockquote>
+<h4 id="2、QGraphicsView视图"><a href="#2、QGraphicsView视图" class="headerlink" title="2、QGraphicsView视图"></a>2、QGraphicsView视图</h4><p>间接父类为QWidget是一个界面组件，用于显示场景中的内容。可以为一个场景设置多个视图，用于对用一个场景提供不同的显示界面。默认情况下，视图大于场景时，场景在视图的中央显示，也可通过设置视图的Alignment属性控制场景在视图中显示的位置。</p>
+<p>视图通过接受键盘和鼠标输入并转换为场景的事件，进行坐标变换后这些事件被传送给可视场景。</p>
+<h4 id="3、QGraphicsItem图形项"><a href="#3、QGraphicsItem图形项" class="headerlink" title="3、QGraphicsItem图形项"></a>3、QGraphicsItem图形项</h4><p>所有的图像项都是从QGraphicsItem继承而来的，其没有父类。图形项相当于模型中的数据，<strong>一个图形项存储了绘制这个图形项的各种参数</strong>，<strong>场景管理所有图形项</strong>，<strong>视图组件负责绘制这些图形项</strong>。</p>
+<p>支持的操作：</p>
+<ul>
+<li><p>鼠标响应事件</p>
+</li>
+<li><p>键盘输入，以及按键事件</p>
+</li>
+<li><p>拖放操作</p>
+</li>
+<li><p>组合，可以是父子图形项关系组合，也可以通过QGraphicsItemGroup类进行组合</p>
+</li>
+</ul>
+<p>一个图形项还可以包含子图形项，图形项之间还支持碰撞检测。</p>
+<h4 id="图形-视图架构坐标系"><a href="#图形-视图架构坐标系" class="headerlink" title="图形&#x2F;视图架构坐标系"></a>图形&#x2F;视图架构坐标系</h4><p>图形&#x2F;视图架构有三个有效的坐标系：<strong>场景坐标系</strong>，<strong>视图坐标系</strong>，<strong>图形项坐标系</strong></p>
+<img src="D:\Documents\Tencent Files\2920611818\FileRecv\MobileFile\1717578701216.jpg" srcset="/img/loading.gif" lazyload alt="1717578701216" style="zoom: 50%;" />
+
+<h4 id="1、场景坐标系"><a href="#1、场景坐标系" class="headerlink" title="1、场景坐标系"></a>1、场景坐标系</h4><p>场景坐标系定义了所有图形项的基础坐标, 场景坐标系描述了每个顶层图形项的位置．</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 定义一个左上角坐标为(-400, -300),宽度为800, 长度为600的场景</span><br>scene = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QGraphicsScene</span>(<span class="hljs-number">-400</span>, <span class="hljs-number">-300</span>, <span class="hljs-number">800</span>, <span class="hljs-number">600</span>);<br></code></pre></td></tr></table></figure>
+
+<h4 id="2、视图坐标系"><a href="#2、视图坐标系" class="headerlink" title="2、视图坐标系"></a>2、视图坐标系</h4><p>视图坐标系就是视图组件的物理坐标系, 单位为像素, 视图坐标系只与视图组件和视口有关,与场景无关. QGraphicsview视口的左上角坐标总是(0, 0), 所有的鼠标事件,拖放事件的坐标首先是由视图坐标系定义, 然后用户将视图坐标映射为场景坐标, 和图形交互.</p>
+<h4 id="3、图形坐标系"><a href="#3、图形坐标系" class="headerlink" title="3、图形坐标系"></a>3、图形坐标系</h4><p>图形项使用自己的局部坐标系, 以自己的中心为原点(0,0).</p>
+<p>图形项的位置就是指其中心在父对象项坐标系中的坐标, 没有父图形项的图形项, 父对象就是场景. </p>
+<blockquote>
+<p>QGraphicsItem::pos()  返回图形项在父对象中的坐标</p>
+</blockquote>
+<h4 id="4、坐标映射"><a href="#4、坐标映射" class="headerlink" title="4、坐标映射"></a>4、坐标映射</h4><blockquote>
+<p>QGraphicsView::mapToScene() 将视图坐标映射为场景坐标</p>
+</blockquote>
+<blockquote>
+<p>QGraphicsScene::itemAt() 获取场景中鼠标光标处的图形项</p>
+</blockquote>
+<p>创建图形&#x2F;视图举例</p>
+<img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240605175741852.png" srcset="/img/loading.gif" lazyload alt="image-20240605175741852"  />
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 创建场景</span><br><span class="hljs-function">QRectF <span class="hljs-title">rect</span><span class="hljs-params">(<span class="hljs-number">-200</span>, <span class="hljs-number">-100</span>, <span class="hljs-number">400</span>, <span class="hljs-number">200</span>)</span></span>;<br>scene = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QGraphicsScene</span>(rect, <span class="hljs-keyword">this</span>);<br>ui-&gt;graphicsView-&gt;<span class="hljs-built_in">setScene</span>(scene);<br><span class="hljs-comment">// 新建图形项</span><br>QGraphicsRectItem *item = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QGraphicsRectItem</span>(rect);<br>item-&gt;<span class="hljs-built_in">setFlags</span>(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable);<br>QPen pen;<br>pen.<span class="hljs-built_in">setWidth</span>(<span class="hljs-number">2</span>);<br>item-&gt;<span class="hljs-built_in">setPen</span>(pen);<br><span class="hljs-comment">// 在场景中添加图形项</span><br>scene-&gt;<span class="hljs-built_in">addItem</span>(item);<br>QGraphicsEllipseItem *item2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QGraphicsEllipseItem</span>(<span class="hljs-number">-100</span>, <span class="hljs-number">-50</span>, <span class="hljs-number">200</span>, <span class="hljs-number">100</span>);<br><span class="hljs-comment">// 设置图形项在父对象中的位置</span><br>item2-&gt;<span class="hljs-built_in">setPos</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);<br>item2-&gt;<span class="hljs-built_in">setBrush</span>(<span class="hljs-built_in">QBrush</span>(Qt::blue));<br><span class="hljs-comment">// 设置图形项操作标志</span><br>item2-&gt;<span class="hljs-built_in">setFlag</span>(QGraphicsItem::ItemIsMovable);<br>item2-&gt;<span class="hljs-built_in">setFlag</span>(QGraphicsItem::ItemIsSelectable);<br>item2-&gt;<span class="hljs-built_in">setFlag</span>(QGraphicsItem::ItemIsFocusable);<br>scene-&gt;<span class="hljs-built_in">addItem</span>(item2);<br>QGraphicsEllipseItem *item3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QGraphicsEllipseItem</span>(<span class="hljs-number">-50</span>, <span class="hljs-number">-50</span>, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>);<br>item3-&gt;<span class="hljs-built_in">setPos</span>(rect.<span class="hljs-built_in">right</span>(),rect.<span class="hljs-built_in">bottom</span>());<br>item3-&gt;<span class="hljs-built_in">setBrush</span>(<span class="hljs-built_in">QBrush</span>(Qt::red));<br>item3-&gt;<span class="hljs-built_in">setFlags</span>(QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable<br>|QGraphicsItem::ItemIsFocusable);<br>scene-&gt;<span class="hljs-built_in">addItem</span>(item3);<br><span class="hljs-comment">// 清除所有选择</span><br>scene-&gt;<span class="hljs-built_in">clearSelection</span>();<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="QChart绘图"><a href="#QChart绘图" class="headerlink" title="QChart绘图"></a>QChart绘图</h2><h2 id="QAnimation"><a href="#QAnimation" class="headerlink" title="QAnimation"></a>QAnimation</h2><h2 id="Qt常见功能类"><a href="#Qt常见功能类" class="headerlink" title="Qt常见功能类"></a>Qt常见功能类</h2><h3 id="QPagedPaintDevice"><a href="#QPagedPaintDevice" class="headerlink" title="QPagedPaintDevice"></a>QPagedPaintDevice</h3><h4 id="QPainter-1"><a href="#QPainter-1" class="headerlink" title="QPainter"></a>QPainter</h4><p>用于打印输出的类</p>
+<h4 id="QPdfWriter"><a href="#QPdfWriter" class="headerlink" title="QPdfWriter"></a>QPdfWriter</h4><p>用于生成pdf文件的绘图设备类</p>
+<h3 id="QGraphicsDropShadowEffect"><a href="#QGraphicsDropShadowEffect" class="headerlink" title="QGraphicsDropShadowEffect"></a>QGraphicsDropShadowEffect</h3><p>创建阴影效果</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++">QGraphicsDropShadowEffect *shadow_effect = <span class="hljs-keyword">new</span> <span class="hljs-built_in">QGraphicsDropShadowEffect</span>(<span class="hljs-keyword">this</span>);<br><span class="hljs-comment">// 设置阴影偏移量，x 轴方向和 y 轴方向</span><br>shadow_effect-&gt;<span class="hljs-built_in">setOffset</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br><span class="hljs-comment">// 阴影颜色，QColor 属性。默认情况为半透明的深灰色(QColor(63, 63, 63,180))</span><br>shadow_effect-&gt;<span class="hljs-built_in">setColor</span>(Qt::red);<br><span class="hljs-comment">// 阴影半径。使用较小的半径产生更清晰的阴影，而使用较大的半径产生更模糊的阴影</span><br>shadow_effect-&gt;<span class="hljs-built_in">setBlurRadius</span>(<span class="hljs-number">20</span>);<br><br><span class="hljs-comment">// 设置阴影</span><br>m_pLoginPhoneLabel-&gt;<span class="hljs-built_in">setGraphicsEffect</span>(shadow_effect);<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="常见问题："><a href="#常见问题：" class="headerlink" title="常见问题："></a>常见问题：</h2><p>字符串编码错误：</p>
+<p>使用Qt的时候，时常会遇到中文乱码问题，qDebug打印日志乱码，或者Widget界面乱码等等。</p>
+<p>原因呢，大多是因为使用MSVC编译器问题导致，而Qt 自带的MinGW一般不会出现乱码问题。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 定义宏强制编译后的执行文件采用UTF-8编码</span><br><span class="hljs-meta">#<span class="hljs-keyword">if</span> _MSC_VER &gt;= 1600 <span class="hljs-comment">//VS2015&gt;VS&gt;VS2010, MSVC VER= 10.0 -14.0</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">pragma</span> execution_character_set(<span class="hljs-string">&quot;utf-8&quot;</span>)</span><br><span class="hljs-meta">#<span class="hljs-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="QSS"><a href="#QSS" class="headerlink" title="QSS"></a>QSS</h2><p>QSS官方说明：<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/stylesheet-customizing.html">Customizing Qt Widgets Using Style Sheets | Qt Widgets 6.7.1</a></p>
+<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><p>使用样式表时，每个widget都被视为包含<code>四个同心矩形的框</code>：<strong>边距矩形（margin rectangle）、边框矩形（border rectangle）、填充矩形（padding rectangle）和内容矩形（content rectangle）</strong>。</p>
+<p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240604235720014.png" srcset="/img/loading.gif" lazyload alt="image-20240604235720014"></p>
+<h3 id="常见样式举例："><a href="#常见样式举例：" class="headerlink" title="常见样式举例："></a>常见样式举例：</h3><h4 id="QPushButton-1"><a href="#QPushButton-1" class="headerlink" title="QPushButton"></a>QPushButton</h4><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531110111671.png" srcset="/img/loading.gif" lazyload alt="image-20240531110111671"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css">QPushButton &#123;<br>	<span class="hljs-attribute">border</span>:none;<br>	<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4px</span>;<br>	<span class="hljs-attribute">color</span>:<span class="hljs-built_in">rgb</span>(<span class="hljs-number">244</span>, <span class="hljs-number">216</span>, <span class="hljs-number">168</span>);<br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">57</span>, <span class="hljs-number">59</span>, <span class="hljs-number">64</span>);<br>&#125;<br>QPushButton::hover &#123;<br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">57</span>, <span class="hljs-number">59</span>, <span class="hljs-number">64</span>, <span class="hljs-number">200</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="QComboBox"><a href="#QComboBox" class="headerlink" title="QComboBox"></a>QComboBox</h4><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240605105400027.png" srcset="/img/loading.gif" lazyload alt="image-20240605105400027"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs CSS">QComboBox &#123;<br>	<span class="hljs-attribute">border</span>:none;<br>    <span class="hljs-attribute">font</span>: normal normal <span class="hljs-number">16px</span> <span class="hljs-string">&quot;Microsoft YaHei&quot;</span>;<br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">243</span>, <span class="hljs-number">243</span>, <span class="hljs-number">243</span>);<br>&#125;<br><br>QComboBox::drop-down&#123;<br>    subcontrol-origin: padding;<br>    subcontrol-<span class="hljs-attribute">position</span>: top right;<br>    <span class="hljs-attribute">border-left-width</span>: <span class="hljs-number">1px</span>;<br>    <span class="hljs-attribute">border-left-color</span>: darkgray;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">20px</span>;<br>&#125;<br><br>QComboBox::down-arrow&#123;<br>	<span class="hljs-selector-tag">image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">:/res/down.png</span>);<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">20px</span>;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">20px</span><br>	<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="QCheckButton"><a href="#QCheckButton" class="headerlink" title="QCheckButton"></a>QCheckButton</h4><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120044731.png" srcset="/img/loading.gif" lazyload alt="image-20240531120044731"><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120102467.png" srcset="/img/loading.gif" lazyload alt="image-20240531120102467"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs css">QCheckBox::indicator&#123;<br>	<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">border</span>:none;<br>	<span class="hljs-attribute">width</span>:<span class="hljs-number">30px</span>;<br>	<span class="hljs-attribute">height</span>:<span class="hljs-number">30px</span>;<br>&#125;<br>QCheckBox::indicator:unchecked&#123;<br>	<span class="hljs-selector-tag">image</span>:<span class="hljs-built_in">url</span>(<span class="hljs-string">:/new/bg/res/unchecked.png</span>);<br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">0px</span>;<br>&#125;<br>QCheckBox::indicator:checked&#123;<br>	<span class="hljs-selector-tag">image</span>:<span class="hljs-built_in">url</span>(<span class="hljs-string">:/new/bg/res/checked.png</span>);<br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">0px</span>;<br>	<span class="hljs-attribute">background-color</span>:<span class="hljs-built_in">rgb</span>(<span class="hljs-number">57</span>, <span class="hljs-number">59</span>, <span class="hljs-number">64</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="QRadioButton"><a href="#QRadioButton" class="headerlink" title="QRadioButton"></a>QRadioButton</h4><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120346639.png" srcset="/img/loading.gif" lazyload alt="image-20240531120346639"><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120358497.png" srcset="/img/loading.gif" lazyload alt="image-20240531120358497"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs css">`QRadioButton::indicator&#123;<br>	<span class="hljs-attribute">border</span>:none;<br>	<span class="hljs-attribute">width</span>:<span class="hljs-number">30px</span>;<br>	<span class="hljs-attribute">height</span>:<span class="hljs-number">30px</span>;<br>&#125;<br>QRadioButton::indicator:unchecked&#123;<br>	<span class="hljs-comment">/* 使用border-image会导致图片失真*/</span><br>	<span class="hljs-selector-tag">image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">:/new/bg/res/radio button unselect.png</span>);<br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">0px</span>;<br>&#125;<br>QRadioButton::indicator:checked&#123;<br>	<span class="hljs-selector-tag">image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">:/new/bg/res/radio button select.png</span>);<br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">0px</span>;<br>&#125;`<br></code></pre></td></tr></table></figure>
+
+<h4 id="QToolButton-1"><a href="#QToolButton-1" class="headerlink" title="QToolButton"></a>QToolButton</h4><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120653964.png" srcset="/img/loading.gif" lazyload alt="image-20240531120653964"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs css">QToolButton<br>&#123;<br>    <span class="hljs-attribute">color</span>:<span class="hljs-built_in">rgb</span>(<span class="hljs-number">112</span>, <span class="hljs-number">74</span>, <span class="hljs-number">29</span>);<br>    <span class="hljs-attribute">background-color</span>:<span class="hljs-built_in">rgb</span>(<span class="hljs-number">255</span>, <span class="hljs-number">202</span>, <span class="hljs-number">11</span>);<br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span>;<br>	<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4px</span>;<br>&#125;<br>QToolButton::menu-arrow&#123;<br>	<span class="hljs-selector-tag">image</span>:none;<br>&#125;<br><br>QToolButton::menu-button&#123;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">35px</span>;<br>	<span class="hljs-selector-tag">image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">:/res/mession.png</span>);<br>&#125;<br><br>QToolButton::hover &#123;<br>    <span class="hljs-attribute">background-color</span>:<span class="hljs-built_in">rgb</span>(<span class="hljs-number">255</span>, <span class="hljs-number">206</span>, <span class="hljs-number">45</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="QScrollArea"><a href="#QScrollArea" class="headerlink" title="QScrollArea"></a>QScrollArea</h4><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531104613496.png" srcset="/img/loading.gif" lazyload alt="image-20240531104613496"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs css">QScrollArea&#123;<br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">0px</span> solid;<br>	<span class="hljs-attribute">border-right-width</span>: <span class="hljs-number">1px</span>;<br>	<span class="hljs-attribute">border-right-color</span>: <span class="hljs-number">#dcdbdc</span>;<br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-number">#f5f5f7</span>;<br>&#125;<br>QScrollBar:vertical &#123;<br>	<span class="hljs-attribute">border</span>: none;<br>	<span class="hljs-attribute">background</span>: <span class="hljs-number">#ffffff</span>;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">10px</span>;<br>	<span class="hljs-attribute">margin</span>: <span class="hljs-number">0px</span> <span class="hljs-number">0</span> <span class="hljs-number">0px</span> <span class="hljs-number">0</span>;<br>&#125;<br>QScrollBar::handle:vertical &#123;<br>	<span class="hljs-attribute">background</span>: Gainsboro;<br>	<span class="hljs-attribute">min-height</span>: <span class="hljs-number">20px</span>;<br>	<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">border</span>: none;<br>&#125;<br>QScrollBar::add-line:vertical &#123;<br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">0px</span> solid grey;<br>	<span class="hljs-attribute">background</span>: <span class="hljs-number">#32CC99</span>;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">0px</span>;<br>	subcontrol-<span class="hljs-attribute">position</span>: bottom;<br>	subcontrol-origin: margin;<br>&#125;<br>QScrollBar::sub-line:vertical &#123;<br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">0px</span> solid grey;<br>	<span class="hljs-attribute">background</span>: <span class="hljs-number">#32CC99</span>;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">0px</span>;<br>	subcontrol-<span class="hljs-attribute">position</span>: top;<br>	subcontrol-origin: margin;<br>&#125;<br>QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical &#123;<br>	<span class="hljs-attribute">background</span>: none;<br>	<span class="hljs-attribute">width</span>: <span class="hljs-number">0px</span>;<br>	<span class="hljs-attribute">height</span>: <span class="hljs-number">0px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="QLineEdit-1"><a href="#QLineEdit-1" class="headerlink" title="QLineEdit"></a>QLineEdit</h4><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240605105528128.png" srcset="/img/loading.gif" lazyload alt="image-20240605105528128"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs css">QLineEdit &#123;<br>	<span class="hljs-comment">/*border: 1px solid #A0A0A0; /* 边框宽度为1px，颜色为#A0A0A0 */</span><br>	<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>; <span class="hljs-comment">/* 边框圆角 */</span><br>	<span class="hljs-attribute">padding-left</span>: <span class="hljs-number">5px</span>; <span class="hljs-comment">/* 文本距离左边界有5px */</span><br>	<span class="hljs-attribute">background-color</span>:<span class="hljs-built_in">rgb</span>(<span class="hljs-number">243</span>, <span class="hljs-number">243</span>, <span class="hljs-number">243</span>);<br>	<span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">/* 文本颜色 */</span><br>	selection-<span class="hljs-attribute">background-color</span>: <span class="hljs-number">#A0A0A0</span>; <span class="hljs-comment">/* 选中文本的背景颜色 */</span><br>	selection-<span class="hljs-attribute">color</span>: <span class="hljs-number">#F2F2F2</span>; <span class="hljs-comment">/* 选中文本的颜色 */</span><br>	<span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Microsoft YaHei&quot;</span>; <span class="hljs-comment">/* 文本字体族 */</span><br>	<span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>; <span class="hljs-comment">/* 文本字体大小 */</span><br>&#125;<br><br>QLineEdit<span class="hljs-selector-pseudo">:hover</span> &#123; <span class="hljs-comment">/* 鼠标悬浮在QLineEdit时的状态 */</span><br>	<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">3px</span>;<br>	selection-<span class="hljs-attribute">color</span>: <span class="hljs-number">#F2F2F2</span>;<br>&#125;<br><br>QLineEdit<span class="hljs-selector-attr">[echoMode=<span class="hljs-string">&quot;2&quot;</span>]</span> &#123; <span class="hljs-comment">/* QLineEdit有输入掩码时的状态 */</span><br>	lineedit-password-character: <span class="hljs-number">9679</span>;<br>	lineedit-password-<span class="hljs-attribute">mask</span>-delay: <span class="hljs-number">2000</span>;<br>&#125;<br><br>QLineEdit<span class="hljs-selector-pseudo">:disabled</span> &#123; <span class="hljs-comment">/* QLineEdit在禁用时的状态 */</span><br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#CDCDCD</span>;<br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-number">#CDCDCD</span>;<br>	<span class="hljs-attribute">color</span>: <span class="hljs-number">#B4B4B4</span>;<br>&#125;<br><br>QLineEdit<span class="hljs-selector-pseudo">:read-only</span> &#123; <span class="hljs-comment">/* QLineEdit在只读时的状态 */</span><br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-number">#CDCDCD</span>;<br>	<span class="hljs-attribute">color</span>: <span class="hljs-number">#F2F2F2</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h4 id="QListWidget"><a href="#QListWidget" class="headerlink" title="QListWidget"></a>QListWidget</h4><h4 id="QTabWidget"><a href="#QTabWidget" class="headerlink" title="QTabWidget"></a>QTabWidget</h4><p><img src="C:\Users\haoks\AppData\Roaming\Typora\typora-user-images\image-20240531120904547.png" srcset="/img/loading.gif" lazyload alt="image-20240531120904547"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs css">QTabWidget::pane <br>&#123; <br>	<span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;<br>&#125;<br><br>QTabBar::tab<br>&#123; <br>	<span class="hljs-attribute">background</span>: transparent;<br>	<span class="hljs-attribute">font-family</span>:<span class="hljs-string">&quot;微软雅黑&quot;</span>;<br>	<span class="hljs-attribute">color</span>:<span class="hljs-built_in">rgb</span>(<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>);<br>	<span class="hljs-attribute">font-size</span>:<span class="hljs-number">16px</span>;<br>	<span class="hljs-attribute">font</span>: bold;<br>	<span class="hljs-attribute">padding-left</span>:<span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">padding-right</span>:<span class="hljs-number">5px</span>;<br>	<span class="hljs-attribute">min-width</span>: <span class="hljs-number">85px</span>;<br>	<span class="hljs-attribute">min-height</span>:<span class="hljs-number">30px</span>;		<br>&#125;<br> <br>QTabBar::tab:selected<br>&#123;<br>	<span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">3px</span> solid <span class="hljs-built_in">rgb</span>(<span class="hljs-number">255</span>, <span class="hljs-number">210</span>, <span class="hljs-number">132</span>);<br>&#125;<br>QTabBar::tab:hover<br>&#123;<br>	<span class="hljs-attribute">color</span>: <span class="hljs-built_in">rgb</span>(<span class="hljs-number">255</span>, <span class="hljs-number">210</span>, <span class="hljs-number">132</span>);<br>&#125;<br>QStackedWidget &#123; <br>	<span class="hljs-attribute">background</span>: transparent;<br>&#125;<br>QStackedWidget &gt; QWidget &#123; <br>	<span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">20</span>,<span class="hljs-number">20</span>,<span class="hljs-number">20</span>,<span class="hljs-number">80</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2024/07/31/Qt/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/31/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/31/Effective/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"lRNjMHJuYBjEDxG7qZ3nMGPi-gzGzoHsz","appKey":"SAOxud4u65tFtKVuwrFrHaQN","path":"window.location.pathname","placeholder":"说点什么吧","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
