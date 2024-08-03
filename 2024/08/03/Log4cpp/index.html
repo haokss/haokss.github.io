@@ -19,17 +19,20 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="haoks的博客">
+    <meta name="description" content="1、Log4cpp概述​      Log4cpp是一个开源的C++类库，它提供了C++程序中使用日志和跟踪调试的功能，它的优点如下：提供应用程序运行上下文，方便跟踪调试；可扩展的、多种方式记录日志，包括命令行、文件、回卷文件、内存、syslog服务器、Win事件日志等； 2、原理​      Log4cpp有三个主要的组件：日志类别（Category）、输出源（Appender）和布局（Layo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Log4cpp">
 <meta property="og:url" content="http://example.com/2024/08/03/Log4cpp/index.html">
 <meta property="og:site_name" content="haoks">
-<meta property="og:description" content="haoks的博客">
+<meta property="og:description" content="1、Log4cpp概述​      Log4cpp是一个开源的C++类库，它提供了C++程序中使用日志和跟踪调试的功能，它的优点如下：提供应用程序运行上下文，方便跟踪调试；可扩展的、多种方式记录日志，包括命令行、文件、回卷文件、内存、syslog服务器、Win事件日志等； 2、原理​      Log4cpp有三个主要的组件：日志类别（Category）、输出源（Appender）和布局（Layo">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-08-03T15:28:16.000Z">
-<meta property="article:modified_time" content="2024-08-03T15:28:16.166Z">
+<meta property="og:image" content="http://example.com/2024/08/03/Log4cpp/b3d70f2fb3a9c34b42dc35c53da3befc.png">
+<meta property="article:published_time" content="2024-08-03T15:28:24.000Z">
+<meta property="article:modified_time" content="2024-08-03T15:38:03.850Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++日志库">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/08/03/Log4cpp/b3d70f2fb3a9c34b42dc35c53da3befc.png">
   
   
   
@@ -235,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          1.1k 字
         
       </span>
     
@@ -246,7 +249,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -297,7 +300,39 @@
             
               <div class="markdown-body">
                 
-                
+                <h3 id="1、Log4cpp概述"><a href="#1、Log4cpp概述" class="headerlink" title="1、Log4cpp概述"></a>1、Log4cpp概述</h3><p>​      Log4cpp是一个开源的C++类库，它提供了C++程序中使用日志和跟踪调试的功能，它的优点如下：提供应用程序运行上下文，方便跟踪调试；可扩展的、多种方式记录日志，包括命令行、文件、回卷文件、内存、syslog服务器、Win事件日志等；</p>
+<h3 id="2、原理"><a href="#2、原理" class="headerlink" title="2、原理"></a>2、原理</h3><p>​      Log4cpp有三个主要的组件：日志类别（Category）、输出源（Appender）和布局（Layout）。这三种类型的组件一起工作使得系统可以根据信息的类型和级别记录它们，并且在运行时控制这些信息的输出格式和位置。</p>
+<img src="/2024/08/03/Log4cpp/b3d70f2fb3a9c34b42dc35c53da3befc.png" srcset="/img/loading.gif" lazyload class="">
+
+<h3 id="3、三个组件的介绍："><a href="#3、三个组件的介绍：" class="headerlink" title="3、三个组件的介绍："></a>3、三个组件的介绍：</h3><p>1）<strong>日志类别（Category）</strong>含义是：日志级别的意思是低于该级别的日志不会被记录。但如果配置的级别是ERROR,则只有高于ERROR优先级的日志才可以打印出来。</p>
+<p>日志的级别总共有：</p>
+<blockquote>
+<p>NOTSET &lt; DEBUG &lt; INFO &lt; NOTICE &lt; WARN &lt; ERROR &lt; CRIT &lt; ALERT &lt; FATAL &#x3D; EMERG</p>
+</blockquote>
+<p>2）<strong>输出源（Appender）</strong>用来输出日志（被layout格式化后）到一些设备上，比如文件、命令行、内存等。也可以定义自己的appender输出日志信息到别的设备上。log4cpp提供的appender如下： FileAppender  输出到文件 RollingFileAppender 输出到回卷文件，即当文件到达某个大小后回卷 ConsoleAppender 输出到控制台</p>
+<p>3）<strong>布局（Layout）</strong>显示样式PatternLayout表示让用户根据类似于C语言printf函数的转换模式来指定输出格式</p>
+<p>PatternLayout支持以下一组格式字符:</p>
+<ul>
+<li>%% - 一个百分号；</li>
+<li>%c - the category；</li>
+<li>%d - date日期格式:日期格式字符后面可以跟着花括号括起来的日期格式说明符。例如<code>%d &#123;% H: % M: % S、l %&#125;或%d &#123;% d % M H % Y %: % M: % S、l %&#125;</code>。如果没有给出日期格式说明符，则使用以下格式:”Wed Jan 02 02:03:55 1980”。</li>
+<li>%m - 你要输出的日志信息；</li>
+<li>%n - 换行符；</li>
+<li>%p - 优先级；</li>
+<li>%r - 该布局创建后的毫秒数；</li>
+<li>%R - 从1970年1月1日0时开始到目前为止的秒数；</li>
+<li>%u - 进程开始到目前为止的时钟周期数；</li>
+<li>%x - the NDC；</li>
+<li>%t - 线程的名字；</li>
+<li>默认情况下，PatternLayout的ConversionPattern设置为“%m%n”。</li>
+</ul>
+<p><strong>三个组件之间的关系</strong></p>
+<p>Category和Appender的关系是：多个Appender可以附加到一个Category上，这样一个日志消息可以同时输出到多个设备上。<br>Appender和Layout的关系是：Layout附加在Appender上，appender调用layout处理完日志消息后，记录到某个</p>
+<h3 id="4、官方案例"><a href="#4、官方案例" class="headerlink" title="4、官方案例"></a>4、官方案例</h3><h4 id="官方属性配置解析"><a href="#官方属性配置解析" class="headerlink" title="官方属性配置解析:"></a>官方属性配置解析:</h4><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># log4cpp.properties</span><br><span class="hljs-comment"># 设置根日志器配置,并设置其附加器为rootAppender,日志等级为DEBUG</span><br><span class="hljs-attr">log4cpp.rootCategory</span>=<span class="hljs-string">DEBUG, rootAppender</span><br><span class="hljs-comment"># 配置名为sub1的子日志器, 并设置附加器为A1, A2, 日志等级为DEBUG</span><br><span class="hljs-attr">log4cpp.category.sub1</span>=<span class="hljs-string">DEBUG, A1, A2</span><br><span class="hljs-comment"># 配置sub2为sub1的子日志器,并设置附加器A3, 日志等级也为DEBUG</span><br><span class="hljs-attr">log4cpp.category.sub1.sub2</span>=<span class="hljs-string">DEBUG, A3</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 设置rootAppender的附加器,并设置其输出位置为控制台和自定义布局模式</span><br><span class="hljs-attr">log4cpp.appender.rootAppender</span>=<span class="hljs-string">ConsoleAppender</span><br><span class="hljs-attr">log4cpp.appender.rootAppender.layout</span>=<span class="hljs-string">PatternLayout</span><br><span class="hljs-attr">log4cpp.appender.rootAppender.layout.ConversionPattern</span>=<span class="hljs-string">%d [%p] %m%n </span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 设置A1这个附加器输出到名为A1.log的文件中, 布局为基本布局</span><br><span class="hljs-attr">log4cpp.appender.A1</span>=<span class="hljs-string">FileAppender</span><br><span class="hljs-attr">log4cpp.appender.A1.fileName</span>=<span class="hljs-string">A1.log</span><br><span class="hljs-attr">log4cpp.appender.A1.layout</span>=<span class="hljs-string">BasicLayout</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 设置A2这个附加器也是文件附加,级别为WARN, 输出到文件A2.log, 并且自定义布局</span><br><span class="hljs-attr">log4cpp.appender.A2</span>=<span class="hljs-string">FileAppender</span><br><span class="hljs-attr">log4cpp.appender.A2.threshold</span>=<span class="hljs-string">WARN</span><br><span class="hljs-attr">log4cpp.appender.A2.fileName</span>=<span class="hljs-string">A2.log</span><br><span class="hljs-attr">log4cpp.appender.A2.layout</span>=<span class="hljs-string">PatternLayout</span><br><span class="hljs-attr">log4cpp.appender.A2.layout.ConversionPattern</span>=<span class="hljs-string">%d [%p] %m%n </span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 设置A3附加模式为写入文件的滚动附加,日志名为A3.log,日志最多200字节</span><br><span class="hljs-comment"># 同时保留一份备份日志文件,使用自定义布局</span><br><span class="hljs-attr">log4cpp.appender.A3</span>=<span class="hljs-string">RollingFileAppender</span><br><span class="hljs-attr">log4cpp.appender.A3.fileName</span>=<span class="hljs-string">A3.log</span><br><span class="hljs-attr">log4cpp.appender.A3.maxFileSize</span>=<span class="hljs-string">200</span><br><span class="hljs-attr">log4cpp.appender.A3.maxBackupIndex</span>=<span class="hljs-string">1</span><br><span class="hljs-attr">log4cpp.appender.A3.layout</span>=<span class="hljs-string">PatternLayout</span><br><span class="hljs-attr">log4cpp.appender.A3.layout.ConversionPattern</span>=<span class="hljs-string">%d [%p] %m%n </span><br></code></pre></td></tr></table></figure>
+
+<h4 id="官方源文件"><a href="#官方源文件" class="headerlink" title="官方源文件"></a>官方源文件</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// main.cpp</span><br><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;log4cpp/Category.hh&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;log4cpp/PropertyConfigurator.hh&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span>* argv[])</span></span><br><span class="hljs-function"></span>&#123;<br>	std::string initFileName = <span class="hljs-string">&quot;log4cpp.properties&quot;</span>;<br>	log4cpp::PropertyConfigurator::<span class="hljs-built_in">configure</span>(initFileName);<br><br>	log4cpp::Category&amp; root = log4cpp::Category::<span class="hljs-built_in">getRoot</span>();<br><br>	log4cpp::Category&amp; sub1 = <br>		log4cpp::Category::<span class="hljs-built_in">getInstance</span>(std::<span class="hljs-built_in">string</span>(<span class="hljs-string">&quot;sub1&quot;</span>));<br><br>	log4cpp::Category&amp; sub2 = <br>		log4cpp::Category::<span class="hljs-built_in">getInstance</span>(std::<span class="hljs-built_in">string</span>(<span class="hljs-string">&quot;sub1.sub2&quot;</span>));<br><br>	root.<span class="hljs-built_in">warn</span>(<span class="hljs-string">&quot;Storm is coming&quot;</span>);<br><br>	sub<span class="hljs-number">1.</span><span class="hljs-built_in">debug</span>(<span class="hljs-string">&quot;Received storm warning&quot;</span>);<br>	sub<span class="hljs-number">1.</span><span class="hljs-built_in">info</span>(<span class="hljs-string">&quot;Closing all hatches&quot;</span>);<br><br>	sub<span class="hljs-number">2.</span><span class="hljs-built_in">debug</span>(<span class="hljs-string">&quot;Hiding solar panels&quot;</span>);<br>	sub<span class="hljs-number">2.</span><span class="hljs-built_in">error</span>(<span class="hljs-string">&quot;Solar panels are blocked&quot;</span>);<br>	sub<span class="hljs-number">2.</span><span class="hljs-built_in">debug</span>(<span class="hljs-string">&quot;Applying protective shield&quot;</span>);<br>	sub<span class="hljs-number">2.</span><span class="hljs-built_in">warn</span>(<span class="hljs-string">&quot;Unfolding protective shield&quot;</span>);<br>	sub<span class="hljs-number">2.</span><span class="hljs-built_in">info</span>(<span class="hljs-string">&quot;Solar panels are shielded&quot;</span>);<br><br>	sub<span class="hljs-number">1.</span><span class="hljs-built_in">info</span>(<span class="hljs-string">&quot;All hatches closed&quot;</span>);<br><br>	root.<span class="hljs-built_in">info</span>(<span class="hljs-string">&quot;Ready for storm.&quot;</span>);<br><br>	log4cpp::Category::<span class="hljs-built_in">shutdown</span>();<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果:"></a>结果:</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">2012</span><span class="hljs-number">-11</span><span class="hljs-number">-14</span> <span class="hljs-number">18</span>:<span class="hljs-number">44</span>:<span class="hljs-number">58</span>,<span class="hljs-number">163</span> [WARN] Storm is coming<br><span class="hljs-number">2012</span><span class="hljs-number">-11</span><span class="hljs-number">-14</span> <span class="hljs-number">18</span>:<span class="hljs-number">44</span>:<span class="hljs-number">58</span>,<span class="hljs-number">166</span> [DEBUG] Received storm warning<br><span class="hljs-number">2012</span><span class="hljs-number">-11</span><span class="hljs-number">-14</span> <span class="hljs-number">18</span>:<span class="hljs-number">44</span>:<span class="hljs-number">58</span>,<span class="hljs-number">170</span> [INFO] Closing all hatches<br><span class="hljs-number">2012</span><span class="hljs-number">-11</span><span class="hljs-number">-14</span> <span class="hljs-number">18</span>:<span class="hljs-number">44</span>:<span class="hljs-number">58</span>,<span class="hljs-number">172</span> [DEBUG] Hiding solar panels<br><span class="hljs-number">2012</span><span class="hljs-number">-11</span><span class="hljs-number">-14</span> <span class="hljs-number">18</span>:<span class="hljs-number">44</span>:<span class="hljs-number">58</span>,<span class="hljs-number">175</span> [ERROR] Solar panels are blocked<br>A<span class="hljs-number">3.l</span>og<span class="hljs-number">.1</span><br><span class="hljs-number">2012</span><span class="hljs-number">-11</span><span class="hljs-number">-14</span> <span class="hljs-number">18</span>:<span class="hljs-number">44</span>:<span class="hljs-number">58</span>,<span class="hljs-number">179</span> [DEBUG] Applying protective shield<br><span class="hljs-number">2012</span><span class="hljs-number">-11</span><span class="hljs-number">-14</span> <span class="hljs-number">18</span>:<span class="hljs-number">44</span>:<span class="hljs-number">58</span>,<span class="hljs-number">183</span> [WARN] Unfolding protective shield<br><span class="hljs-number">2012</span><span class="hljs-number">-11</span><span class="hljs-number">-14</span> <span class="hljs-number">18</span>:<span class="hljs-number">44</span>:<span class="hljs-number">58</span>,<span class="hljs-number">186</span> [INFO] Solar panels are shielded<br><span class="hljs-number">2012</span><span class="hljs-number">-11</span><span class="hljs-number">-14</span> <span class="hljs-number">18</span>:<span class="hljs-number">44</span>:<span class="hljs-number">58</span>,<span class="hljs-number">190</span> [INFO] All hatches closed<br><span class="hljs-number">2012</span><span class="hljs-number">-11</span><span class="hljs-number">-14</span> <span class="hljs-number">18</span>:<span class="hljs-number">44</span>:<span class="hljs-number">58</span>,<span class="hljs-number">192</span> [INFO] Ready <span class="hljs-keyword">for</span> storm.<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -305,6 +340,13 @@
             <div>
               <div class="post-metas my-3">
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C-%E6%97%A5%E5%BF%97%E5%BA%93/" class="print-no-link">#C++日志库</a>
+      
+    </div>
   
 </div>
 
