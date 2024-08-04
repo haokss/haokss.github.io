@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>三数之和</title>
+    <link href="/2024/08/04/%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/"/>
+    <url>/2024/08/04/%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/</url>
+    
+    <content type="html"><![CDATA[<p>题目描述：</p><p>给你一个整数数组 <code>nums</code> ，判断是否存在三元组 <code>[nums[i], nums[j], nums[k]]</code> 满足 <code>i != j</code>、<code>i != k</code> 且 <code>j != k</code> ，同时还满足 <code>nums[i] + nums[j] + nums[k] == 0</code> 。请你返回所有和为 <code>0</code> 且不重复的三元组。</p><p><strong>注意：</strong>答案中不可以包含重复的三元组。</p><p>解析：</p><p>求三数之和为0的本质上是求两数之和为某一值，但是这两个数是不相等的，并且不是固定的，存在重复值。</p><p>首先通过对数组进行排序，固定三个数中的最小值，然后依次求得每一个数可能的两数之和。</p><p>主要思想：排序+双指针</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">threeSum</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;<br>        <span class="hljs-comment">// 先对数组进行排序，确定第一个元素</span><br>        std::vector&lt;std::vector&lt;<span class="hljs-type">int</span>&gt;&gt; result;<br>        std::<span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i&lt;n; ++i)&#123;<br>            <span class="hljs-keyword">if</span>(i&gt;<span class="hljs-number">0</span> &amp;&amp; nums[i]==nums[i<span class="hljs-number">-1</span>])&#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-comment">// 找到除去i之外的两数之和</span><br>            <span class="hljs-comment">// 此处j取i+1是因为i是三个数中的最小值，为固定的</span><br>            <span class="hljs-type">int</span> j = i + <span class="hljs-number">1</span>, k = n - <span class="hljs-number">1</span>;<br>            <span class="hljs-comment">// 两数之和的双指针求法</span><br>            <span class="hljs-keyword">while</span>(j&lt;k)&#123;<br>                <span class="hljs-type">int</span> sum = nums[i] + nums[j] + nums[k];<br>                <span class="hljs-keyword">if</span>(sum&gt;<span class="hljs-number">0</span>) --k;<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(sum&lt;<span class="hljs-number">0</span>) ++j;<br>                <span class="hljs-keyword">else</span>&#123;<br>                    result.<span class="hljs-built_in">push_back</span>(&#123;nums[i], nums[j], nums[k]&#125;);<br>                    <span class="hljs-comment">// 跳过j，k的重复项目！！</span><br>                    <span class="hljs-keyword">for</span>(++j; j&lt;k&amp;&amp;nums[j] == nums[j<span class="hljs-number">-1</span>]; ++j);<br>                    <span class="hljs-keyword">for</span>(--k; k&gt;j&amp;&amp;nums[k] == nums[k<span class="hljs-number">+1</span>]; --k);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>算法 双指针</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Log4cpp</title>
     <link href="/2024/08/03/Log4cpp/"/>
     <url>/2024/08/03/Log4cpp/</url>
