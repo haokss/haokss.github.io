@@ -19,22 +19,21 @@
   <meta name="author" content="haoks">
   <meta name="keywords" content="">
   
-    <meta name="description" content="题目描述： 给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i !&#x3D; j、i !&#x3D; k 且 j !&#x3D; k ，同时还满足 nums[i] + nums[j] + nums[k] &#x3D;&#x3D; 0 。请你返回所有和为 0 且不重复的三元组。 注意：答案中不可以包含重复的三元组。 解析： 求三数之和为0的本质上是求两数之和为某一值，但是这两个数是不">
+    <meta name="description" content="尽管这次入职的时间很短仅仅只有两天的时间，但是还是了解到了公司的很多事情。 首先是办理入职信息，这个是根据hr办理的。 然后是有一个leader会引导你找到自己的工位，在这个过程中，会遇到很多的人，应该尽量的对他们有一个印象，有困难也好搭话。进入一个新环境首先要熟悉基本的生活常用地方，比如吃饭、喝水、上厕所的地方。然后是了解工作时间，工作内容，这个还是不要着急，刚开始的信息量有点大，需要慢慢看、认">
 <meta property="og:type" content="article">
-<meta property="og:title" content="三数之和">
-<meta property="og:url" content="http://example.com/2024/08/04/%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/index.html">
+<meta property="og:title" content="第一次实习经历">
+<meta property="og:url" content="http://example.com/2024/08/08/%E6%9D%82%E8%B0%88/index.html">
 <meta property="og:site_name" content="haoks">
-<meta property="og:description" content="题目描述： 给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i !&#x3D; j、i !&#x3D; k 且 j !&#x3D; k ，同时还满足 nums[i] + nums[j] + nums[k] &#x3D;&#x3D; 0 。请你返回所有和为 0 且不重复的三元组。 注意：答案中不可以包含重复的三元组。 解析： 求三数之和为0的本质上是求两数之和为某一值，但是这两个数是不">
+<meta property="og:description" content="尽管这次入职的时间很短仅仅只有两天的时间，但是还是了解到了公司的很多事情。 首先是办理入职信息，这个是根据hr办理的。 然后是有一个leader会引导你找到自己的工位，在这个过程中，会遇到很多的人，应该尽量的对他们有一个印象，有困难也好搭话。进入一个新环境首先要熟悉基本的生活常用地方，比如吃饭、喝水、上厕所的地方。然后是了解工作时间，工作内容，这个还是不要着急，刚开始的信息量有点大，需要慢慢看、认">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-08-04T13:40:59.637Z">
-<meta property="article:modified_time" content="2024-08-04T13:54:11.490Z">
+<meta property="article:published_time" content="2024-08-08T13:44:43.550Z">
+<meta property="article:modified_time" content="2024-08-08T14:01:02.988Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="算法 双指针">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>三数之和 - haoks</title>
+  <title>第一次实习经历 - haoks</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +212,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">三数之和</span>
+            <span id="subtitle">第一次实习经历</span>
           
         </div>
 
@@ -229,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-04 21:40" pubdate>
-          2024年8月4日 晚上
+        <time datetime="2024-08-08 21:44" pubdate>
+          2024年8月8日 晚上
         </time>
       </span>
     
@@ -241,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          372 字
+          404 字
         
       </span>
     
@@ -298,20 +297,18 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">三数之和</h1>
+            <h1 id="seo-header">第一次实习经历</h1>
             
             
               <div class="markdown-body">
                 
-                <p>题目描述：</p>
-<p>给你一个整数数组 <code>nums</code> ，判断是否存在三元组 <code>[nums[i], nums[j], nums[k]]</code> 满足 <code>i != j</code>、<code>i != k</code> 且 <code>j != k</code> ，同时还满足 <code>nums[i] + nums[j] + nums[k] == 0</code> 。请你返回所有和为 <code>0</code> 且不重复的三元组。</p>
-<p><strong>注意：</strong>答案中不可以包含重复的三元组。</p>
-<p>解析：</p>
-<p>求三数之和为0的本质上是求两数之和为某一值，但是这两个数是不相等的，并且不是固定的，存在重复值。</p>
-<p>首先通过对数组进行排序，固定三个数中的最小值，然后依次求得每一个数可能的两数之和。</p>
-<p>主要思想：排序+双指针</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">threeSum</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) &#123;<br>        <span class="hljs-comment">// 先对数组进行排序，确定第一个元素</span><br>        std::vector&lt;std::vector&lt;<span class="hljs-type">int</span>&gt;&gt; result;<br>        std::<span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i&lt;n; ++i)&#123;<br>            <span class="hljs-keyword">if</span>(i&gt;<span class="hljs-number">0</span> &amp;&amp; nums[i]==nums[i<span class="hljs-number">-1</span>])&#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <span class="hljs-comment">// 找到除去i之外的两数之和</span><br>            <span class="hljs-comment">// 此处j取i+1是因为i是三个数中的最小值，为固定的</span><br>            <span class="hljs-type">int</span> j = i + <span class="hljs-number">1</span>, k = n - <span class="hljs-number">1</span>;<br>            <span class="hljs-comment">// 两数之和的双指针求法</span><br>            <span class="hljs-keyword">while</span>(j&lt;k)&#123;<br>                <span class="hljs-type">int</span> sum = nums[i] + nums[j] + nums[k];<br>                <span class="hljs-keyword">if</span>(sum&gt;<span class="hljs-number">0</span>) --k;<br>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(sum&lt;<span class="hljs-number">0</span>) ++j;<br>                <span class="hljs-keyword">else</span>&#123;<br>                    result.<span class="hljs-built_in">push_back</span>(&#123;nums[i], nums[j], nums[k]&#125;);<br>                    <span class="hljs-comment">// 跳过j，k的重复项目！！</span><br>                    <span class="hljs-keyword">for</span>(++j; j&lt;k&amp;&amp;nums[j] == nums[j<span class="hljs-number">-1</span>]; ++j);<br>                    <span class="hljs-keyword">for</span>(--k; k&gt;j&amp;&amp;nums[k] == nums[k<span class="hljs-number">+1</span>]; --k);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-
+                <p>尽管这次入职的时间很短仅仅只有两天的时间，但是还是了解到了公司的很多事情。</p>
+<p>首先是办理入职信息，这个是根据hr办理的。</p>
+<p>然后是有一个leader会引导你找到自己的工位，在这个过程中，会遇到很多的人，应该尽量的对他们有一个印象，有困难也好搭话。进入一个新环境首先要熟悉基本的生活常用地方，比如吃饭、喝水、上厕所的地方。然后是了解工作时间，工作内容，这个还是不要着急，刚开始的信息量有点大，需要慢慢看、认真看，遗漏到某些重要信息可能会导致后续沟通成本加大。</p>
+<p>当遇到不会的，不理解的内容要及时的记下来，总结起来，然后统一去询问leader。然后就是积极性的问题，如果当前任务理解的差不多没有问题的话，要及时的去询问leader新任务，保持积极主动的态度。</p>
+<p>带上笔记本或者是桌面笔记，将当天的任务及时的记录下来，好反思总结教训。</p>
+<p>最大的收获是：遇到不懂的问题一定要积极主动的问，寻求帮助。</p>
+<p>同时可能是因为有海康的缘故，感觉我并没有能够突入自己所有的经历来去了解工作的内容，这也是一个值得反思的点，不要给自己留下后路，才能在绝境中收获更多。</p>
 
                 
               </div>
@@ -321,13 +318,6 @@
               <div class="post-metas my-3">
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E7%AE%97%E6%B3%95-%E5%8F%8C%E6%8C%87%E9%92%88/" class="print-no-link">#算法 双指针</a>
-      
-    </div>
-  
 </div>
 
 
@@ -336,8 +326,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>三数之和</div>
-      <div>http://example.com/2024/08/04/三数之和/</div>
+      <div>第一次实习经历</div>
+      <div>http://example.com/2024/08/08/杂谈/</div>
     </div>
     <div class="license-meta">
       
@@ -349,7 +339,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年8月4日</div>
+          <div>2024年8月8日</div>
         </div>
       
       
@@ -381,18 +371,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/08/git%E5%9F%BA%E6%9C%AC/" title="git基本使用">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">git基本使用</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/03/Log4cpp/" title="Log4cpp">
-                        <span class="hidden-mobile">Log4cpp</span>
+                      <a href="/2024/08/08/git%E5%9F%BA%E6%9C%AC/" title="git基本使用">
+                        <span class="hidden-mobile">git基本使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
