@@ -4,6 +4,38 @@
   
   
   <entry>
+    <title>XML入门</title>
+    <link href="/2024/08/18/XML/"/>
+    <url>/2024/08/18/XML/</url>
+    
+    <content type="html"><![CDATA[<h2 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h2><h3 id="Extensible-Markup-Language-XML"><a href="#Extensible-Markup-Language-XML" class="headerlink" title="Extensible Markup Language XML"></a>Extensible Markup Language XML</h3><p>可拓展性标记语言。</p><p>统一的数据表示格式，利用标签包裹，且标签必须自定义。类似于HTML，主要用于<strong>数据传输</strong>，配置文件，存储数据充当小型数据库。规范了数据格式，使得数据具有结构性，易读易处理。</p><p>例如：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">root</span>&gt;</span>  <span class="hljs-comment">&lt;!--根节点必须存在--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">user</span>&gt;</span>haoks<span class="hljs-tag">&lt;/<span class="hljs-name">user</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">msg</span>&gt;</span>hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">msg</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">root</span>&gt;</span><br></code></pre></td></tr></table></figure><p><strong>XML和HTML有哪些不一样：</strong></p><p>1、HTML标签不能自定义，XML标签只能自定义；</p><p>2、HTML语法要求不严格，XML语法要求及其严格，必须是成对标签；</p><p>3、XML用来传输和存储数据，HTML用来存储数据</p><h3 id="XML的基本语法"><a href="#XML的基本语法" class="headerlink" title="XML的基本语法"></a>XML的基本语法</h3><h4 id="1、语法规则"><a href="#1、语法规则" class="headerlink" title="1、语法规则"></a>1、语法规则</h4><ul><li><p>XML必须有根节点，其它所有节点的父节点；</p></li><li><p>头声明：<?xml version="1.0", encoding="utf-8" ?>，语法上可有可无，建议书写；</p></li></ul><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;utf-8&quot;</span> ?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">root</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">root</span>&gt;</span><br></code></pre></td></tr></table></figure><ul><li>所有XML标签都是成对元素；</li><li>标签名大小写敏感</li><li>特殊字符使用实体转义</li></ul><table><thead><tr><th>转义符号</th><th>符号</th><th align="left">含义</th></tr></thead><tbody><tr><td>&amp;lt;</td><td>&lt;</td><td align="left">less than</td></tr><tr><td>&amp;gt;</td><td>&gt;</td><td align="left">greater than</td></tr><tr><td>&amp;amp;</td><td>&amp;</td><td align="left">ampersand</td></tr><tr><td>&amp;apos;</td><td>‘</td><td align="left">apostrohe</td></tr><tr><td>&amp;quot;</td><td>“</td><td align="left">quotation mark</td></tr></tbody></table><h4 id="2、元素属性"><a href="#2、元素属性" class="headerlink" title="2、元素属性"></a>2、元素属性</h4><p>描述标签的额外信息，一个标签可以有多个属性，属性的值必须用引号括起来，属性的命名规则：应用变量规则。</p><p>解析XML数据时，属性会带来额外的解析代码。</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">name</span> <span class="hljs-attr">age</span>=<span class="hljs-string">&quot;39&quot;</span>&gt;</span> 太白<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br></code></pre></td></tr></table></figure><h4 id="3、CDATA"><a href="#3、CDATA" class="headerlink" title="3、CDATA"></a>3、CDATA</h4><p>取消文本解析,特殊字符较多时使用,用法 <code>&lt;![CDATA][     ]]&gt;</code></p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">msg</span>&gt;</span>&lt;![CDATA[...&lt;不解析的内容&gt;...]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">msg</span>&gt;</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>XML</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2024/08/12/%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/"/>
+    <url>/2024/08/12/%E5%8C%BA%E9%97%B4%E5%90%88%E5%B9%B6/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>第一次实习经历</title>
     <link href="/2024/08/08/%E6%9D%82%E8%B0%88/"/>
     <url>/2024/08/08/%E6%9D%82%E8%B0%88/</url>
